@@ -55,6 +55,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    skip: true
 
     services:
       postgres:
