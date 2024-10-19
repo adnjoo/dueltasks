@@ -3,7 +3,8 @@ class NotesController < ApplicationController
   before_action :set_note, only: [ :edit, :update, :destroy ]
 
   def index
-    @notes = current_user.notes
+    @active_notes = current_user.notes.where(archived: false)
+    @archived_notes = current_user.notes.where(archived: true)
   end
 
   def new
@@ -28,6 +29,12 @@ class NotesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def archive
+    note = Note.find(params[:id])
+    note.update(archived: true)
+    render json: { message: "Note archived successfully" }
   end
 
   def destroy

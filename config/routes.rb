@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :notes, except: [ :show ]
+  resources :notes, except: [ :show ] do
+    member do
+      patch :archive
+    end
+  end
 
   # Static Pages
   get "about", to: "pages#about", as: :about
