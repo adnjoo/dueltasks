@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :notes, except: [ :show ]
+
+  devise_scope :user do
+    authenticated :user do
+      root to: "notes#index", as: :authenticated_root
+    end
+
+    unauthenticated do
+      root to: "pages#home"
+    end
+  end
+
+  resources :notes, except: [ :show, :index ]
 
   # Static Pages
-  root to: "pages#home"
   get "about", to: "pages#about", as: :about
 
   # API namespace for isolated routes
