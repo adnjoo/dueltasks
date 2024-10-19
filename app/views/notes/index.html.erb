@@ -1,0 +1,14 @@
+<h1>Your Notes</h1>
+
+<%= link_to 'New Note', new_note_path, class: 'btn btn-primary' %>
+
+<ul>
+  <% @notes.each do |note| %>
+    <li>
+      <strong><%= note.title %></strong>
+      <p><%= note.content %></p>
+      <%= link_to 'Edit', edit_note_path(note) %> |
+      <%= link_to 'Delete', note_path(note), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>
