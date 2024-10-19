@@ -6,7 +6,11 @@
     <nav>
       <ul class="flex space-x-6 text-xl">
         <li><a href="/" class="hover:text-gray-400">Home</a></li>
-        <li><a href="/about" class="hover:text-gray-400">About</a></li>
+        <% if user_signed_in? %>
+          <%= link_to "Log out", destroy_user_session_path, :method=>'delete'%>
+        <% else %>
+          <%= link_to "Login", new_user_session_path %>
+        <% end %>
       </ul>
     </nav>
   </div>
