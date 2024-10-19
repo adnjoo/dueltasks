@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :notes, except: [ :show ]
 
   # Static Pages
   root to: "pages#home"

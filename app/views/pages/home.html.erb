@@ -3,6 +3,7 @@
     <div class="text-3xl my-8">
       Welcome <%= current_user.email %>
     </div>
+    <%= link_to 'View All Notes', notes_path, class: "text-3xl" %>
   <% else %>
     <!-- Hero Section -->
     <section class="flex-1 bg-white text-black p-10">

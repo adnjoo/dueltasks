@@ -1,0 +1,22 @@
+<h1 class="text-4xl font-bold uppercase tracking-wide text-black mb-6 border-b-4 border-black">
+  Your Notes
+</h1>
+
+<%= link_to 'New Note', new_note_path, class: 'bg-black text-white px-4 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all' %>
+
+<ul class="mt-6 space-y-4">
+  <% @notes.each do |note| %>
+    <li class="border-b-2 border-black pb-4">
+      <strong class="text-xl font-semibold uppercase text-black">
+        <%= note.title %>
+      </strong>
+      <p class="text-base text-gray-700 mt-2">
+        <%= note.content %>
+      </p>
+      <div class="mt-4">
+        <%= link_to 'Edit', edit_note_path(note), class: 'text-black underline hover:text-gray-800' %> |
+        <%= link_to 'Delete', note_path(note), class: 'text-red-600 underline hover:text-red-800', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+      </div>
+    </li>
+  <% end %>
+</ul>
