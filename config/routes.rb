@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :notes, except: [ :show ] do
     member do
-      patch :archive
+      patch :archive, :toggle_completion
     end
   end
 
