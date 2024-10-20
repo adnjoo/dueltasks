@@ -2,12 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
+/* Layout */
+.my-container {
+  @apply mx-auto my-6 px-4;
+  @apply max-w-6xl;
+}
 
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+@screen xl {
+  .my-container {
+    @apply px-0;
   }
 }
 
-*/
+/* Animations */
+.animate-in {
+  animation: animateIn 0.3s ease 0.15s both;
+}
+
+@keyframes animateIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes grow {
+  0% {
+    width: 80%;
+  }
+  50% {
+    width: 90%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.animate-grow {
+  animation: grow 1s cubic-bezier(0.2, 1, 0.2, 1) forwards;
+}
