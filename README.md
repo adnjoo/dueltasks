@@ -11,9 +11,15 @@ DrewApp is a simple note management app built with Ruby on Rails.
 - PostgreSQL
 
 ## Getting Started
-   ```bash
-   git clone https://github.com/adnjoo/drewapp
-   bundle install
-   rails db:setup
-   bin/dev
-   ```
+```bash
+git clone https://github.com/adnjoo/drewapp
+bundle install
+rails db:setup
+bin/dev
+```
+
+## Env
+```bash
+DATABASE_URL=..
+STRIPE_SECRET_KEY=..
+```
