@@ -24,6 +24,12 @@ Rails.application.routes.draw do
     get :pricing
   end
 
+  namespace :purchase do
+    resources :checkouts
+  end
+
+  resources :subscriptions
+
   # Static Pages
   get "about", to: "pages#about", as: :about
 
