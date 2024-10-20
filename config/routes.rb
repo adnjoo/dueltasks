@@ -25,8 +25,13 @@ Rails.application.routes.draw do
   end
 
   namespace :purchase do
-    resources :checkouts
+    resources :checkouts, only: [ :create ] do
+      collection do
+        get "success", to: "checkouts#success"
+      end
+    end
   end
+
 
   resources :subscriptions
 
