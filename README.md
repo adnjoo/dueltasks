@@ -20,6 +20,7 @@ bin/dev
 
 ## Env
 ```bash
-DATABASE_URL=..
-STRIPE_SECRET_KEY=..
+DATABASE_URL=...
+STRIPE_SECRET_KEY=...
+STRIPE_PUBLISHABLE_KEY=...
 ```
