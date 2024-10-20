@@ -16,7 +16,8 @@ class NotesController < ApplicationController
     if @note.save
       redirect_to notes_path, notice: "Note created successfully."
     else
-      render :new
+      flash.now[:alert] = "Note creation failed."
+      render :new, status: :unprocessable_entity
     end
   end
 
