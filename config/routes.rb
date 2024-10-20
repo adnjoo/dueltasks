@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # Devise
   devise_for :users
 
   devise_scope :user do
@@ -11,10 +12,16 @@ Rails.application.routes.draw do
     end
   end
 
+  # Notes
   resources :notes, except: [ :show ] do
     member do
       patch :archive, :toggle_completion
     end
+  end
+
+  # Stripe
+  scope controller: :static do
+    get :pricing
   end
 
   # Static Pages
