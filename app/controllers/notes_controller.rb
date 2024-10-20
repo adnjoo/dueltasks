@@ -5,6 +5,7 @@ class NotesController < ApplicationController
   def index
     @active_notes = current_user.notes.where(archived: false)
     @archived_notes = current_user.notes.where(archived: true)
+    @points = current_user.notes.where(archived: true, completed: true)
   end
 
   def new
@@ -30,6 +31,12 @@ class NotesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def toggle_completion
+    @note = Note.find(params[:id])
+    @note.update(completed: !@note.completed)
+    redirect_to notes_path, notice: "Note status updated."
   end
 
   def archive
