@@ -4,5 +4,5 @@ class Note < ApplicationRecord
   belongs_to :user
 
   validates :title, presence: true
-  validates :content, presence: true
+  # content validation removed, allowing empty content
 end
