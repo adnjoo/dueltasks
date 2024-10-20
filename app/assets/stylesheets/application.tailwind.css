@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
-@layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
-  }
+.my-container {
+  @apply mx-auto my-6 px-4;
+  @apply max-w-6xl;
 }
 
-*/
+@screen xl {
+  .my-container {
+    @apply px-0;
+  }
+}
