@@ -1,43 +1,52 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="my-container mx-auto">
+  <h2 class="text-4xl font-bold uppercase tracking-wide text-black mb-6 border-b-4 border-black">
+    Edit <%= resource_name.to_s.humanize %>
+  </h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-6" }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="flex flex-col">
+      <%= f.label :email, class: "text-lg font-semibold uppercase tracking-wide text-black" %>
+      <p class="text-black">
+        <%= resource.email %>
+      </p>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div class="text-black">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="flex flex-col">
+      <%= f.label :password, class: "text-lg font-semibold uppercase tracking-wide text-black" %> 
+      <i class="text-sm text-gray-700">(leave blank if you don't want to change it)</i>
+      <%= f.password_field :password, autocomplete: "new-password", class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700" %>
+      <% if @minimum_password_length %>
+        <em class="text-sm text-gray-600"><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= f.label :password_confirmation, class: "text-lg font-semibold uppercase tracking-wide text-black" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700" %>
+    </div>
+
+    <div class="flex flex-col">
+      <%= f.label :current_password, class: "text-lg font-semibold uppercase tracking-wide text-black" %> 
+      <i class="text-sm text-gray-700">(we need your current password to confirm your changes)</i>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700" %>
+    </div>
+
+    <div>
+      <%= f.submit "Update", class: "bg-black text-white px-6 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all cursor-pointer" %>
+    </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
+  <h3 class="text-2xl font-bold uppercase tracking-wide text-black mt-10">Cancel my account</h3>
+  <div class="mt-4 text-black">
+    Unhappy? 
+    <%= button_to "Cancel my account", registration_path(resource_name), class: "bg-red-600 text-white px-4 py-2 uppercase font-bold hover:bg-red-800 transition-all cursor-pointer", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+  <%= link_to "Back", :back, class: "text-black underline hover:text-gray-800 mt-6 inline-block" %>
+</div>
