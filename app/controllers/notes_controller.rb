@@ -34,7 +34,7 @@ class NotesController < ApplicationController
   def archive
     note = Note.find(params[:id])
     note.update(archived: true)
-    render json: { message: "Note archived successfully" }
+    redirect_to notes_path, notice: "Note deleted successfully."
   end
 
   def destroy
