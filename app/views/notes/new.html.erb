@@ -1,17 +1,19 @@
-<h1 class="text-4xl font-bold uppercase tracking-wide text-black mb-6 border-b-4 border-black">
-  New Note
-</h1>
-<%= form_with model: @note, local: true, class: "space-y-6" do |form| %>
-  <div class="flex flex-col">
-    <%= form.label :title, class: "text-lg font-semibold text-black uppercase tracking-wide" %>
-    <%= form.text_field :title, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700" %>
-  </div>
-  <div class="flex flex-col">
-    <%= form.label :content, class: "text-lg font-semibold text-black uppercase tracking-wide" %>
-    <%= form.text_area :content, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700 h-48" %>
-  </div>
-  <div>
-    <%= form.submit 'Create Note', class: "bg-black text-white px-6 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all cursor-pointer" %>
-  </div>
-<% end %>
-<%= link_to 'Back to Notes', notes_path, class: "text-black underline hover:text-gray-800 mt-6 inline-block" %>
+<div class="container">
+  <h1 class="text-4xl font-bold uppercase tracking-wide text-black mb-6 border-b-4 border-black">
+    New Note
+  </h1>
+  <%= form_with model: @note, local: true, class: "space-y-6" do |form| %>
+    <div class="flex flex-col">
+      <%= form.label :title, class: "text-lg font-semibold text-black uppercase tracking-wide" %>
+      <%= form.text_field :title, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700" %>
+    </div>
+    <div class="flex flex-col">
+      <%= form.label :content, class: "text-lg font-semibold text-black uppercase tracking-wide" %>
+      <%= form.text_area :content, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700 h-48" %>
+    </div>
+    <div>
+      <%= form.submit 'Create Note', class: "bg-black text-white px-6 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all cursor-pointer" %>
+    </div>
+  <% end %>
+  <%= link_to 'Back to Notes', notes_path, class: "text-black underline hover:text-gray-800 mt-6 inline-block" %>
+</div>
