@@ -1,6 +1,6 @@
 <div class="my-container pt-12">
   <div class="px-4">
-    <% if current_user.subscribed? %>
+    <% if current_user && current_user.subscribed? %>
       You are subscribed to the monthly plan.
     <% else %>
       You are not subscribed to the monthly plan.
