@@ -32,6 +32,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :webhooks, only: :create
 
   resources :subscriptions
 
