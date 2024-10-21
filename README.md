@@ -1,6 +1,6 @@
-# DrewApp
+# DuelTasks
 
-DrewApp is a simple note management app built with Ruby on Rails.
+DuelTasks is a simple multiplayer productivity tool built with Ruby on Rails.
 
 <img src='./public/20241019081537.png' width='300' style='border-radius: 1rem'>
 
@@ -12,7 +12,7 @@ DrewApp is a simple note management app built with Ruby on Rails.
 
 ## Getting Started
 ```bash
-git clone https://github.com/adnjoo/drewapp
+git clone https://github.com/adnjoo/dueltasks
 bundle install
 rails db:setup
 bin/dev
