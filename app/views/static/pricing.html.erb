@@ -1,25 +1,25 @@
 <div class="my-container pt-12">
-<% if user_signed_in? %>
-  <div class="m-4 p-4 bg-white border-4 border-black shadow-none">
-    <%= form_tag purchase_checkouts_path, method: :post, data: { turbo: false } do %>
-      <input type="hidden" name="price_id" value="<%= Rails.application.credentials.dig(:stripe, :pricing, :monthly) %>" />
-      <%= submit_tag "Subscribe for $#{SUBSCRIPTION_PRICE_MONTHLY}/mo", data: { disable_with: "Hold please..." }, class: "px-4 py-6 bg-yellow-400 border-4 border-black text-center text-xl font-extrabold uppercase text-black w-full" %>
+  <% if user_signed_in? %>
+    <!-- if true-->
+    <% if current_user.subscribed? %>
+      <div class="m-4 p-4 bg-yellow-100 text-center text-yellow-900">
+        <p>
+          You're already subscribed. 
+          <!-- < = button_to "Manage your subscription", billing_path, method: :post, data: { turbo: false }, class: "underline" %> -->
+        </p>
+      </div>
+    <% else %>
+      <div class="m-4 bg-white border-4 border-black shadow-none">
+        <%= form_tag purchase_checkouts_path, method: :post, data: { turbo: false } do %>
+          <input type="hidden" name="price_id" value="<%= Rails.application.credentials.dig(:stripe, :pricing, :monthly) %>" />
+          <%= submit_tag "Subscribe for $#{SUBSCRIPTION_PRICE_MONTHLY}/mo", data: { disable_with: "Hold please..." }, class: "px-4 py-6 bg-yellow-400 border-4 border-black text-center text-xl font-extrabold uppercase text-black w-full" %>
+        <% end %>
+      </div>
+      <div class="m-4 bg-white border-4 border-black shadow-none">
+        <%= form_tag purchase_checkouts_path, method: :post, data: { turbo: false } do %>
+          <input type="hidden" name="price_id" value="<%= Rails.application.credentials.dig(:stripe, :pricing, :annual) %>" />
+          <%= submit_tag "Subscribe for $#{SUBSCRIPTION_PRICE_ANNUAL}/yr", data: { disable_with: "Hold please..." }, class: "px-4 py-6 bg-blue-400 border-4 border-black text-center text-xl font-extrabold uppercase text-black w-full" %>
+        <% end %>
+      </div>
     <% end %>
   </div>
-
-  <div class="m-4 p-4 bg-white border-4 border-black shadow-none">
-    <%= form_tag purchase_checkouts_path, method: :post, data: { turbo: false } do %>
-      <input type="hidden" name="price_id" value="<%= Rails.application.credentials.dig(:stripe, :pricing, :annual) %>" />
-      <%= submit_tag "Subscribe for $#{SUBSCRIPTION_PRICE_ANNUAL}/yr", data: { disable_with: "Hold please..." }, class: "px-4 py-6 bg-blue-400 border-4 border-black text-center text-xl font-extrabold uppercase text-black w-full" %>
-    <% end %>
-  </div>
-<% else %>
-  <div class="m-4 p-4 bg-white border-4 border-black shadow-none">
-    <%= link_to "Subscribe for $#{SUBSCRIPTION_PRICE_MONTHLY}/mo", new_user_session_path, class: "px-4 py-6 bg-yellow-400 border-4 border-black text-center text-xl font-extrabold uppercase text-black w-full" %>
-  </div>
-
-  <div class="m-4 p-4 bg-white border-4 border-black shadow-none">
-    <%= link_to "Subscribe for $#{SUBSCRIPTION_PRICE_ANNUAL}/yr", new_user_session_path, class: "px-4 py-6 bg-blue-400 border-4 border-black text-center text-xl font-extrabold uppercase text-black w-full" %>
-  </div>
-<% end %>
-</div>

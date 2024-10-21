@@ -6,4 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :subscriptions, dependent: :destroy
+
+  def subscribed?
+    subscriptions.where(status: "active").any?
+  end
 end
