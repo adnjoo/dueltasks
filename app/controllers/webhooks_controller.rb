@@ -27,8 +27,13 @@ class WebhooksController < ApplicationController
     # Handle the event
     case event.type
     when "checkout.session.completed"
+      # If a user doesn't exist we definitely don't want to subscribe them
+      return if !User.exists?(event.data.object.client_reference_id)
       # Payment is successful and the subscription is created.
       # Provision the subscription and save the customer ID to your database.
+      puts "🔔 Checkout session completed"
+      fullfill_order(event.data.object)
+
     when "checkout.session.async_payment_succeeded"
       # Some payments take longer to succeed (usually noncredit card payments)
       # You could do logic here to account for that.
@@ -43,5 +48,29 @@ class WebhooksController < ApplicationController
     else
       puts "Unhandled event type: #{event.type}"
     end
+  end
+
+  private
+
+  def fullfill_order(checkout_session)
+    puts "fulfill_order"
+    # Find user and assign customer id from Stripe
+    user = User.find(checkout_session.client_reference_id)
+    user.update(stripe_id: checkout_session.customer)
+
+    # Retrieve new subscription via Stripe API using susbscription id
+    stripe_subscription = Stripe::Subscription.retrieve(checkout_session.subscription)
+
+    # Create new subscription with Stripe subscription details and user data
+    Subscription.create(
+      customer_id: stripe_subscription.customer,
+      current_period_start: Time.at(stripe_subscription.current_period_start).to_datetime,
+      current_period_end: Time.at(stripe_subscription.current_period_end).to_datetime,
+      plan_id: stripe_subscription.plan.id,
+      interval: stripe_subscription.plan.interval,
+      status: stripe_subscription.status,
+      subscription_id: stripe_subscription.id,
+      user: user,
+    )
   end
 end
