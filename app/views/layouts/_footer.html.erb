@@ -1,6 +1,9 @@
 <footer class="bg-black text-white p-5">
   <div class="max-w-6xl flex justify-between w-full mx-auto items-center">
     <p class="text-xl font-bold">&copy; 2024 <%= APP_NAME %>. All rights reserved.</p>
-    <a href="<%= GITHUB_LINK %>" target="_blank" class="text-white hover:underline font-bold text-xl">GitHub</a>
+    <div class="flex space-x-4">
+      <a href="<%= pricing_path %>" class="text-white hover:underline font-bold text-xl">Pricing</a>
+      <a href="<%= GITHUB_LINK %>" target="_blank" class="text-white hover:underline font-bold text-xl">GitHub</a>
+    </div>
   </div>
 </footer>
