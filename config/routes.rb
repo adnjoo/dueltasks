@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # Devise
   devise_for :users
 
   devise_scope :user do
@@ -11,11 +12,29 @@ Rails.application.routes.draw do
     end
   end
 
+  # Notes
   resources :notes, except: [ :show ] do
     member do
       patch :archive, :toggle_completion
     end
   end
+
+  # Stripe
+  scope controller: :static do
+    get :pricing
+  end
+
+  namespace :purchase do
+    resources :checkouts, only: [ :create ] do
+      collection do
+        get "success", to: "checkouts#success"
+      end
+    end
+  end
+
+  resources :webhooks, only: :create
+
+  resources :subscriptions
 
   # Static Pages
   get "about", to: "pages#about", as: :about

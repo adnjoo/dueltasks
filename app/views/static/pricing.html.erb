@@ -1,0 +1,15 @@
+<div class="my-container pt-12">
+  <div class="px-4">
+    <% if current_user && current_user.subscribed? %>
+      You're in! Subscribed to the monthly plan.
+    <% else %>
+      Oops, looks like you're not subscribed yet.
+    <% end %>
+  </div>
+  <div class="m-4 bg-white border-4 border-black shadow-none">
+    <%= form_tag purchase_checkouts_path, method: :post, data: { turbo: false } do %>
+      <input type="hidden" name="price_id" value="<%= Rails.application.credentials.dig(:stripe, :pricing, :monthly) %>" />
+      <%= submit_tag "Get Pro for $#{SUBSCRIPTION_PRICE_MONTHLY}/mo", data: { disable_with: "Hang tight..." }, class: "px-4 py-6 bg-yellow-400 border-4 border-black text-center text-xl font-extrabold uppercase text-black w-full" %>
+    <% end %>
+  </div>
+</div>
