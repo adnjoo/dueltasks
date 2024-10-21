@@ -2,7 +2,7 @@
 
 DuelTasks is a simple multiplayer productivity tool built with Ruby on Rails.
 
-<img src='./public/20241019081537.png' width='300' style='border-radius: 1rem'>
+<img src='./public/20241021063042.png' width='300' style='border-radius: 1rem'>
 
 ## Requirements
 
