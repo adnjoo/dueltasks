@@ -1,11 +1,9 @@
 <div class="my-container pt-12">
   <% if user_signed_in? %>
-    <!-- if true-->
     <% if current_user.subscribed? %>
       <div class="m-4 p-4 bg-yellow-100 text-center text-yellow-900">
         <p>
           You're already subscribed. 
-          <!-- < = button_to "Manage your subscription", billing_path, method: :post, data: { turbo: false }, class: "underline" %> -->
         </p>
       </div>
     <% else %>
