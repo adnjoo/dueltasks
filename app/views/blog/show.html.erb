@@ -1,11 +1,15 @@
 <div class="my-container">
   <article class="p-2 shadow-none">
     <p class="text-sm font-mono text-gray-600 mb-6">
-      <%= @post_date %>
+      <%= @post[:date] %>
     </p>
 
+    <% if @post[:image].present? %>
+      <img src="<%= @post[:image] %>" alt="<%= @post[:title] %>" class="max-w-sm h-auto mb-6 border-4 border-black">
+    <% end %>
+
     <div class="prose">
-      <%= @post.html_safe %>
+      <%= @post[:content].html_safe %>
     </div>
   </article>
 
