@@ -3,6 +3,7 @@
 title: "Introducing DuelTasks: Gamify Your Productivity!"
 summary: "DuelTasks turns to-do lists into exciting challenges to boost your motivation and accountability!"
 date: "2024-10-22"
+image: "/blog/twitter.jpg"
 
 ---
 
