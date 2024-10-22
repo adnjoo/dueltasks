@@ -1,7 +1,7 @@
 <div class="flex flex-col mx-auto p-5 max-w-6xl lg:px-0">
   <% if user_signed_in? %>
     <div class="text-3xl my-8">
-      Welcome <%= current_user.email %>
+      Welcome, <%= current_user.email %>
     </div>
     <%= link_to 'View All Notes', notes_path, class: "text-3xl" %>
   <% else %>
@@ -9,14 +9,13 @@
     <section class="flex-1 bg-white text-black p-10 animate-in">
       <div class="container mx-auto flex flex-col justify-center items-center text-center">
         <h1 class="text-6xl font-extrabold text-black tracking-tight leading-none">
-          Embracing Bold Innovation
+          Organize your work and life, finally.
         </h1>
         <p class="mt-6 text-2xl text-gray-800 max-w-2xl">
-          Get more done with less effort.
+          Turns to-do lists into exciting challenges to boost your accountability!
         </p>
         <%# Animated Line %>
-        <div class='animate-grow my-8 h-2 w-full bg-black'>
-        </div>
+        <div class='animate-grow my-8 h-2 w-full bg-black'></div>
         <%= link_to "Get Started", new_user_session_path, class: "mt-10 inline-block bg-black text-white px-8 py-4 text-2xl font-bold border-4 border-black shadow-xl transition-transform transform active:translate-y-1 hover:-translate-y-1" %>
       </div>
     </section>
@@ -24,16 +23,16 @@
     <section class="bg-gray-100 p-10">
       <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="p-8 bg-white border-4 border-black text-center">
-          <h2 class="text-3xl font-bold mb-4">Simplified</h2>
-          <p>Neo-brutalist designs prioritize simplicity, focusing on user experience over aesthetics.</p>
+          <h2 class="text-3xl font-bold mb-4">Duel Tasks</h2>
+          <p>Turn any task into a duel—win or pay up!</p>
         </div>
         <div class="p-8 bg-white border-4 border-black text-center">
-          <h2 class="text-3xl font-bold mb-4">Innovative</h2>
-          <p>Embracing a modern aesthetic with clean lines and user-friendly elements.</p>
+          <h2 class="text-3xl font-bold mb-4">Real Rewards</h2>
+          <p>Set monetary penalties for incomplete tasks.</p>
         </div>
         <div class="p-8 bg-white border-4 border-black text-center">
-          <h2 class="text-3xl font-bold mb-4">Engaging</h2>
-          <p>Neo-brutalism aims to create engaging experiences that resonate with users.</p>
+          <h2 class="text-3xl font-bold mb-4">Leaderboards</h2>
+          <p>Track progress, earn rewards, and stay motivated.</p>
         </div>
       </div>
     </section>
