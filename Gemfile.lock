@@ -108,6 +108,7 @@ GEM
     domain_name (0.6.20240107)
     drb (2.2.1)
     erubi (1.13.0)
+    front_matter_parser (1.0.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     http-accept (1.7.0)
@@ -224,6 +225,7 @@ GEM
     rake (13.2.1)
     rdoc (6.7.0)
       psych (>= 4.0.0)
+    redcarpet (3.6.0)
     regexp_parser (2.9.2)
     reline (0.5.10)
       io-console (~> 0.5)
@@ -332,12 +334,14 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  front_matter_parser (~> 1.0)
   importmap-rails
   jbuilder
   mailgun-ruby (~> 1.2)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.1, >= 7.2.1.1)
+  redcarpet (~> 3.6)
   rubocop-rails-omakase
   selenium-webdriver
   sprockets-rails
