@@ -39,6 +39,10 @@ Rails.application.routes.draw do
   # Static Pages
   get "about", to: "pages#about", as: :about
 
+  # Blog
+  get "/blog", to: "blog#index"
+  get "/blog/:slug", to: "blog#show", as: "blog_post"
+
   # API namespace for isolated routes
   namespace :api do
     get "hello", to: proc { [ 200, { "Content-Type" => "application/json" }, [ '{"message":"Hello, World!"}' ] ] }

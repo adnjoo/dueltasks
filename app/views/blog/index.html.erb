@@ -1,0 +1,5 @@
+<h1>Blog</h1>
+
+<% @posts.each do |post| %>
+  <h2><%= link_to post[:title], blog_post_path(post[:slug]) %></h2>
+<% end %>
