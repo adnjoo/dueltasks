@@ -133,6 +133,7 @@ GEM
       net-imap
       net-pop
       net-smtp
+    mailgun (0.11)
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
@@ -318,6 +319,7 @@ DEPENDENCIES
   devise (~> 4.9)
   importmap-rails
   jbuilder
+  mailgun (~> 0.11)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.2.1, >= 7.2.1.1)
