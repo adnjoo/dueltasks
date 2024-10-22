@@ -62,4 +62,4 @@ gem "devise", "~> 4.9"
 
 gem "stripe", "~> 13.0"
 
-gem "mailgun", "~> 0.11"
+gem "mailgun-ruby", "~> 1.2"
