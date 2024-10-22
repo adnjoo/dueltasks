@@ -1,12 +1,19 @@
 # app/controllers/blog_controller.rb
 class BlogController < ApplicationController
   require "redcarpet"
+  require "front_matter_parser"
 
   def index
-    @posts = available_posts.map do |file_path|
+    markdown_files = available_posts
+
+    @posts = markdown_files.map do |file|
+      parsed = parse_markdown_file(file)
+
       {
-        title: File.basename(file_path, ".md").titleize,
-        slug: File.basename(file_path, ".md")
+        title: parsed.front_matter["title"],
+        slug: File.basename(file, ".md"),
+        summary: parsed.front_matter["summary"] || parsed.content[0..200],
+        date: parsed.front_matter["date"]&.to_s
       }
     end
   end
@@ -16,8 +23,10 @@ class BlogController < ApplicationController
     file_path = available_posts.find { |file| File.basename(file, ".md") == slug }
 
     if file_path.present?
-      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
-      @post = markdown.render(File.read(file_path))
+      parsed = parse_markdown_file(file_path)
+
+      markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+      @post = markdown.render(parsed.content)
     else
       redirect_to blog_path, alert: "Post not found."
     end
@@ -25,12 +34,14 @@ class BlogController < ApplicationController
 
   private
 
-  # Sanitize the slug to allow only valid characters
+  def parse_markdown_file(file)
+    FrontMatterParser::Parser.parse_file(file)
+  end
+
   def sanitize_slug(slug)
     slug.gsub(/[^0-9a-z\-_]/i, "")
   end
 
-  # List all available Markdown files
   def available_posts
     Dir.glob(Rails.root.join("app", "views", "posts", "*.md"))
   end

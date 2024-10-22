@@ -108,6 +108,7 @@ GEM
     domain_name (0.6.20240107)
     drb (2.2.1)
     erubi (1.13.0)
+    front_matter_parser (1.0.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     http-accept (1.7.0)
@@ -333,6 +334,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  front_matter_parser (~> 1.0)
   importmap-rails
   jbuilder
   mailgun-ruby (~> 1.2)
