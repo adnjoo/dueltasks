@@ -3,34 +3,35 @@ class BlogController < ApplicationController
   require "redcarpet"
 
   def index
-    markdown_files = Dir.glob("app/views/posts/*.md")
-
-    @posts = markdown_files.map do |file|
+    @posts = available_posts.map do |file_path|
       {
-        title: File.basename(file, ".md").titleize,
-        slug: File.basename(file, ".md")
+        title: File.basename(file_path, ".md").titleize,
+        slug: File.basename(file_path, ".md")
       }
     end
   end
 
   def show
     slug = sanitize_slug(params[:slug])
-    file_path = Rails.root.join("app", "views", "posts", "#{slug}.md")
+    file_path = available_posts.find { |file| File.basename(file, ".md") == slug }
 
-    if File.exist?(file_path)
+    if file_path.present?
       markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, extensions = {})
       @post = markdown.render(File.read(file_path))
     else
       redirect_to blog_path, alert: "Post not found."
     end
-  rescue Errno::ENOENT
-    redirect_to blog_path, alert: "Post not found."
   end
 
   private
 
+  # Sanitize the slug to allow only valid characters
   def sanitize_slug(slug)
-    # Only allow alphanumeric, hyphens, and underscores in slugs
     slug.gsub(/[^0-9a-z\-_]/i, "")
+  end
+
+  # List all available Markdown files
+  def available_posts
+    Dir.glob(Rails.root.join("app", "views", "posts", "*.md"))
   end
 end
