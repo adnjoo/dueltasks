@@ -1,11 +1,13 @@
 <div class="my-container">
-  <article class="p-2 shadow-none">
-    <p class="text-sm font-mono text-gray-600 mb-6">
-      <%= @post[:date] %>
+  <article>
+    <p class="text-sm font-mono mb-6">
+      <%= Date.parse(@post[:date]).strftime("%B %d, %Y") %>
     </p>
 
     <% if @post[:image].present? %>
-      <img src="<%= @post[:image] %>" alt="<%= @post[:title] %>" class="max-w-sm h-auto mb-6 border-4 border-black">
+      <div class="overflow-hidden border-4 border-black mb-6 max-w-sm">
+        <img src="<%= @post[:image] %>" alt="<%= @post[:title] %>" class="w-full h-full">
+      </div>
     <% end %>
 
     <div class="prose">
