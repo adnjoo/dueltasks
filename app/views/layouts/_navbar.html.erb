@@ -1,12 +1,15 @@
 <nav class="bg-black text-white p-5 text-white">
   <div class="max-w-6xl flex justify-between w-full mx-auto items-center">
-  <%= link_to APP_NAME, root_path, class: "text-2xl font-extrabold" %>
-  <ul class="flex space-x-6 text-xl">
-    <% if user_signed_in? %>
-      <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "hover:text-gray-500" %></li>
-    <% else %>
-      <li><%= link_to "Login", new_user_session_path, class: "hover:text-gray-500" %></li>
+    <%= link_to root_path, class: "flex flex-row" do %>
+      <%= image_tag "brand/logo_white_no_bg.png", alt: "Logo", class: "h-8 w-auto" %>
+      <span class="text-2xl font-extrabold ml-2 hidden lg:block"><%= APP_NAME %></span>
     <% end %>
-  </ul>
+    <ul class="flex space-x-6 text-xl">
+      <% if user_signed_in? %>
+        <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "hover:text-gray-500" %></li>
+      <% else %>
+        <li><%= link_to "Login", new_user_session_path, class: "hover:text-gray-500" %></li>
+      <% end %>
+    </ul>
   </div>
 </nav>
