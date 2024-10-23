@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   has_many :subscriptions, dependent: :destroy
 
+  validates :username, presence: true, uniqueness: { case_sensitive: false }, allow_nil: true
+
   def subscribed?
     subscriptions.where(status: "active").any?
   end
