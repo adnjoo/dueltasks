@@ -9,8 +9,6 @@ image: "/blog/twitter.jpg"
 
 Tired of boring to-do lists? [**DuelTasks**](/) makes task management more fun using a competitive twist to keep you motivated!
 
-DuelTasks is a productivity app where tasks become challenges. 
-
 Set a deadline, choose a challenger, and stay accountable with real stakes.
 
 ## Key Features
