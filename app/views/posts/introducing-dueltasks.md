@@ -7,7 +7,7 @@ image: "/blog/twitter.jpg"
 
 # Introducing DuelTasks
 
-Tired of boring to-do lists? [**DuelTasks**](/) makes task management more fun using a competitive twist to keep you motivated!
+Tired of boring to-do lists? **DuelTasks** makes task management more fun using a competitive twist to keep you motivated!
 
 Set a deadline, choose a challenger, and stay accountable with real stakes.
 
@@ -21,13 +21,13 @@ Set a deadline, choose a challenger, and stay accountable with real stakes.
 
 <a href="https://en.wikipedia.org/wiki/Gamification" target="_blank">Gamification</a> taps into your competitive side, making tasks more engaging and harder to ignore.
 
-DuelTasks' penalty system adds **accountability** to keep you on track. 
+DuelTasks' penalty system adds **accountability** to keep you on track.
 
-By using the [science of loss aversion](/blog/loss-aversion), we can get tasks done faster.
+By using the <a href="/blog/loss-aversion" target="_blank">science of loss aversion</a>, we can get tasks done faster.
 
 ## Get Started
 
-[Sign up for DuelTasks](/users/sign_in) and start getting more done today!
+<a href="/users/sign_up" target="_blank">Sign up for DuelTasks</a> and start getting more done today!
 
 ---
 
