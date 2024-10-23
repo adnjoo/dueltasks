@@ -1,6 +1,7 @@
 # app/controllers/blog_controller.rb
 class BlogController < ApplicationController
   include BlogHelper
+  include DateHelper
 
   def index
     @posts = sort_by_newest.map do |file|

@@ -22,7 +22,7 @@ DuelTasks is a gamified productivity app where tasks become challenges. Set a de
 
 ## Why It Works
 
-Gamification taps into your competitive side, making tasks more engaging and harder to ignore. DuelTasks' penalty system adds accountability to keep you on track.
+[Gamification](https://en.wikipedia.org/wiki/Gamification) taps into your competitive side, making tasks more engaging and harder to ignore. DuelTasks' penalty system adds accountability to keep you on track.
 
 ## Get Started
 
