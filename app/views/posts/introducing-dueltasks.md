@@ -1,10 +1,8 @@
 ---
-
 title: "Introducing DuelTasks: Gamify Your Productivity!"
 summary: "DuelTasks turns to-do lists into exciting challenges to boost your motivation and accountability!"
-date: "2024-10-22"
+date: "2024-10-01"
 image: "/blog/twitter.jpg"
-
 ---
 
 # Introducing DuelTasks: Gamify Your Productivity!
@@ -32,4 +30,8 @@ Turn tasks into fun challenges. [Sign up for DuelTasks](/users/sign_in) and star
 
 ---
 
-Stay competitive and get things done with DuelTasks!
+Built by Team Bamboo
+
+<a href="https://heybam.boo" target="_blank">
+<img src='https://heybam.boo/wp-content/uploads/2024/09/cropped-b.png' width='40'>
+</a>

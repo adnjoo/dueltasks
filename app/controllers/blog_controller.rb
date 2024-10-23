@@ -30,6 +30,10 @@ class BlogController < ApplicationController
   end
 
   def sort_by_newest
-    available_posts.sort_by { |file| File.mtime(file) }.reverse
+    available_posts.sort_by do |file|
+      front_matter = FrontMatterParser::Parser.parse_file(file)
+
+      front_matter.front_matter["date"]
+    end.reverse
   end
 end
