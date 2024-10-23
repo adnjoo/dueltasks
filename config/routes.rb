@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "leaderboard", to: "notes#leaderboard"
+
   # Stripe
   scope controller: :static do
     get :pricing

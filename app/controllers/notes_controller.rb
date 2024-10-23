@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [ :leaderboard ]
   before_action :set_note, only: [ :edit, :update, :destroy ]
 
   def index
@@ -48,6 +48,10 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     redirect_to notes_path, notice: "Note deleted successfully."
+  end
+
+  def leaderboard
+    @leaderboard = User.leaderboard(10)
   end
 
   private

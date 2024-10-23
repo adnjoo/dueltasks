@@ -1,0 +1,21 @@
+<div class="my-container bg-gray-100 p-4 shadow-lg border-4 border-black">
+  <h2 class="text-3xl font-bold mb-4">Leaderboard</h2>
+  <table class="w-full table-auto border-collapse border border-black">
+    <thead class="bg-black text-white">
+      <tr>
+        <th class="p-2 border border-black">Rank</th>
+        <th class="p-2 border border-black">User</th>
+        <th class="p-2 border border-black">Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @leaderboard.each_with_index do |user, index| %>
+        <tr class="<%= cycle('bg-gray-200', 'bg-gray-50') %>">
+          <td class="p-2 border border-black"><%= index + 1 %></td>
+          <td class="p-2 border border-black"><%= user.username %></td>
+          <td class="p-2 border border-black"><%= user.score %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
