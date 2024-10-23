@@ -10,6 +10,8 @@ DEFAULT_TO_EMAIL = "support@dueltasks.com"
 SCREENSHOT_LINK = "https://dueltasks.com/20241022193042.png"
 TWITTER_CARD = "https://dueltasks.com/20241022193042_x.png"
 
+WAITLIST_LINK = "https://forms.gle/6sFw9P3nqfKd575F7"
+
 # Subscription Prices
 SUBSCRIPTION_PRICE_MONTHLY = 1
 SUBSCRIPTION_PRICE_ANNUAL = 50
