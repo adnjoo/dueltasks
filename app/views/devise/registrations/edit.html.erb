@@ -19,6 +19,21 @@
       <div class="text-black">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
+    <!-- Username Field -->
+    <div class="flex flex-col">
+      <%= f.label :username, class: "text-lg font-semibold uppercase tracking-wide text-black" %>
+      <%= f.text_field :username, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700", placeholder: "Enter username" %>
+    </div>
+
+    <!-- Public Field -->
+    <div class="flex flex-col">
+      <%= f.label :public, class: "text-lg font-semibold uppercase tracking-wide text-black" %>
+      <div class="flex items-center">
+        <%= f.check_box :public, class: "mr-2" %>
+        <label for="public" class="text-sm text-black">Public Profile</label>
+      </div>
+    </div>
+
     <div class="flex flex-col">
       <%= f.label :password, class: "text-lg font-semibold uppercase tracking-wide text-black" %> 
       <i class="text-sm text-gray-700">(leave blank if you don't want to change it)</i>
@@ -47,7 +62,7 @@
   <h3 class="text-2xl font-bold uppercase tracking-wide text-black mt-10">Cancel my account</h3>
   <div class="mt-4 text-black">
     Unhappy?
-    Email us at <%= link_to DEFAULT_TO_EMAIL, "mailto:#{DEFAULT_TO_EMAIL}?subject=Cancel Account}", class: "text-black underline" %> to cancel your account.
+    Email us at <%= link_to DEFAULT_TO_EMAIL, "mailto:#{DEFAULT_TO_EMAIL}?subject=Cancel Account", class: "text-black underline" %> to cancel your account.
   </div>
 
   <%= link_to "Back", :back, class: "text-black underline hover:text-gray-800 mt-6 inline-block" %>
