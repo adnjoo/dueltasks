@@ -3,9 +3,7 @@ class BlogController < ApplicationController
   include BlogHelper
 
   def index
-    markdown_files = available_posts
-
-    @posts = markdown_files.map do |file|
+    @posts = sort_by_newest.map do |file|
       build_post_data(file, for_index: true)
     end
   end
@@ -29,5 +27,9 @@ class BlogController < ApplicationController
 
   def available_posts
     Dir.glob(Rails.root.join("app", "views", "posts", "*.md"))
+  end
+
+  def sort_by_newest
+    available_posts.sort_by { |file| File.mtime(file) }.reverse
   end
 end
