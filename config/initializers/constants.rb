@@ -6,7 +6,8 @@ X_LINK = "https://x.com/dueltasks"
 X_AT = "@dueltasks"
 DOMAIN = "https://dueltasks.com"
 DEFAULT_FROM_EMAIL = "hello@dueltasks.com"
-SCREENSHOT_LINK = "https://dueltasks.com/20241022193042_screely.png"
+SCREENSHOT_LINK = "https://dueltasks.com/20241022193042.png"
+TWITTER_CARD = "https://dueltasks.com/20241022193042_x.png"
 
 # Subscription Prices
 SUBSCRIPTION_PRICE_MONTHLY = 1
