@@ -9,8 +9,6 @@ image: "/blog/twitter.jpg"
 
 Tired of boring to-do lists? [**DuelTasks**](/) makes task management more fun using a competitive twist to keep you motivated!
 
-DuelTasks is a productivity app where tasks become challenges. 
-
 Set a deadline, choose a challenger, and stay accountable with real stakes.
 
 ## Key Features
@@ -29,7 +27,7 @@ By using the [science of loss aversion](/blog/loss-aversion), we can get tasks d
 
 ## Get Started
 
-[Sign up for DuelTasks](/users/sign_in) and start getting more done today!
+[Sign up for the DuelTasks waitlist](https://forms.gle/6sFw9P3nqfKd575F7) and we'll let you know soon when it's available.
 
 ---
 
