@@ -46,8 +46,8 @@
 
   <h3 class="text-2xl font-bold uppercase tracking-wide text-black mt-10">Cancel my account</h3>
   <div class="mt-4 text-black">
-    Unhappy? 
-    <%= button_to "Cancel my account", registration_path(resource_name), class: "bg-red-600 text-white px-4 py-2 uppercase font-bold hover:bg-red-800 transition-all cursor-pointer", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+    Unhappy?
+    Email us at <%= link_to DEFAULT_TO_EMAIL, "mailto:#{DEFAULT_TO_EMAIL}?subject=Cancel Account}", class: "text-black underline" %> to cancel your account.
   </div>
 
   <%= link_to "Back", :back, class: "text-black underline hover:text-gray-800 mt-6 inline-block" %>
