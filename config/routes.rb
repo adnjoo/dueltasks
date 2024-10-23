@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  # Devise
-  devise_for :users
+  require "sidekiq/web"
 
+  # Devise Authentication
+  devise_for :users
   devise_scope :user do
     authenticated :user do
       root to: "notes#index", as: :authenticated_root
@@ -12,16 +13,22 @@ Rails.application.routes.draw do
     end
   end
 
-  # Notes
+  # Sidekiq Admin Interface
+  authenticate :user, ->(u) { u.admin? } do
+    mount Sidekiq::Web => "/sidekiq"
+  end
+
+  # Notes (Task Management)
   resources :notes, except: [ :show ] do
     member do
       patch :archive, :toggle_completion
     end
   end
 
+  # Leaderboard
   get "leaderboard", to: "notes#leaderboard"
 
-  # Stripe
+  # Stripe (Subscriptions and Webhooks)
   scope controller: :static do
     get :pricing
   end
