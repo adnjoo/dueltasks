@@ -15,6 +15,16 @@ class User < ApplicationRecord
     subscriptions.where(status: "active").any?
   end
 
+  def self.leaderboard(limit = 10)
+    self.left_joins(:notes)
+        .group(:id)
+        .order("COUNT(notes.id) DESC")
+        .select("users.id, users.username, COUNT(notes.id) AS score")
+        .where("notes.archived = true AND notes.completed = true")
+        .where(public: true)
+        .limit(limit)
+  end
+
   private
 
   def send_welcome_email
