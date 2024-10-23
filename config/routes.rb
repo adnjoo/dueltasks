@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: "notes#index", as: :authenticated_root
     end
+
     unauthenticated do
       root to: "pages#home"
     end
@@ -27,32 +28,39 @@ Rails.application.routes.draw do
   # Leaderboard
   get "leaderboard", to: "notes#leaderboard"
 
-  # Static Pages
-  get "about", to: "pages#about"
-  get "pricing", to: "static#pricing"
-
-  # Blog
-  get "blog", to: "blog#index"
-  get "blog/:slug", to: "blog#show", as: "blog_post"
-
   # Stripe (Subscriptions and Webhooks)
+  scope controller: :static do
+    get :pricing
+  end
+
   namespace :purchase do
     resources :checkouts, only: [ :create ] do
-      get "success", on: :collection
+      collection do
+        get "success", to: "checkouts#success"
+      end
     end
   end
-  resources :subscriptions, only: [ :index, :create, :destroy ]
-  post "webhooks", to: "webhooks#create"
 
-  # API Namespace
+  resources :webhooks, only: :create
+
+  resources :subscriptions
+
+  # Static Pages
+  get "about", to: "pages#about", as: :about
+
+  # Blog
+  get "/blog", to: "blog#index"
+  get "/blog/:slug", to: "blog#show", as: "blog_post"
+
+  # API namespace for isolated routes
   namespace :api do
-    get "hello", to: proc { [ 200, { "Content-Type" => "application/json" }, [ '{"message":"Hello, World!"' ] ] }
+    get "hello", to: proc { [ 200, { "Content-Type" => "application/json" }, [ '{"message":"Hello, World!"}' ] ] }
   end
 
-  # Health Check
-  get "up", to: "rails/health#show"
+  # Health check route for load balancers and uptime monitors
+  get "up", to: "rails/health#show", as: :health_check
 
-  # PWA Routes
-  get "service-worker", to: "rails/pwa#service_worker"
-  get "manifest", to: "rails/pwa#manifest"
+  # PWA related routes
+  get "service-worker", to: "rails/pwa#service_worker", as: :service_worker
+  get "manifest", to: "rails/pwa#manifest", as: :pwa_manifest
 end
