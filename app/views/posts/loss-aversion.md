@@ -7,7 +7,7 @@ image: "/stripe.jpg"
 
 # The Science of Loss Aversion
 
-According to Nobel laureate Daniel Kahneman's [**prospect theory**](https://cfdm.jasoncollins.blog/prospect-theory), people are wired to fear losses more than they enjoy gains. This means that the pain of losing $10 feels far more significant than the pleasure of gaining $10. 
+According to Nobel laureate Daniel Kahneman's <a href="https://slooowdown.wordpress.com/2015/11/21/thinking-fast-and-slow-by-daniel-kahneman/" target="_blank">prospect theory</a>, people are wired to fear losses more than they enjoy gains. This means that the pain of losing $10 feels far more significant than the pleasure of gaining $10.
 
 The idea is simple: if failing to complete a task means losing money, you’ll be more likely to act.
 
