@@ -1,6 +1,6 @@
 ---
 title: "The Science of Loss Aversion"
-summary: "Using the science of loss aversion to help you stay motivated."
+summary: "Using the science of loss aversion to help you stay motivated"
 date: "2024-10-23"
 image: "/stripe.jpg"
 ---
