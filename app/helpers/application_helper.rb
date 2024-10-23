@@ -14,11 +14,12 @@ module ApplicationHelper
 
   def meta_tags(title: APP_TITLE, description: APP_DESCRIPTION, image: SCREENSHOT_LINK, url: DOMAIN)
     safe_join([
-      tag.meta(name: "twitter:card", content: "summary_large_image"),
-      tag.meta(name: "twitter:site", content: X_LINK),
       tag.meta(name: "twitter:title", content: title),
       tag.meta(name: "twitter:description", content: description),
       tag.meta(name: "twitter:image", content: image),
+      tag.meta(name: "twitter:card", content: "summary_large_image"),
+      tag.meta(name: "twitter:creator", content: X_AT),
+      tag.meta(name: "twitter:site", content: X_AT),
       tag.meta(property: "og:title", content: title),
       tag.meta(property: "og:type", content: "website"),
       tag.meta(property: "og:url", content: url),
