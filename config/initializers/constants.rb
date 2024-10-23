@@ -1,6 +1,6 @@
 APP_NAME = "DuelTasks"
 APP_TITLE = "DuelTasks - Gamified Task Management"
-APP_DESCRIPTION = "DuelTasks is a task management app that helps you get things done by turning your tasks into a game."
+APP_DESCRIPTION = "Turning everyday tasks into small wins. A little fun goes a long way when it comes to getting things done."
 GITHUB_LINK = "https://github.com/adnjoo/dueltasks"
 X_LINK = "https://x.com/dueltasks"
 X_AT = "@dueltasks"
