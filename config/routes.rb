@@ -22,10 +22,10 @@ Rails.application.routes.draw do
     member do
       patch :archive, :toggle_completion
     end
-    collection do
-      get :leaderboard
-    end
   end
+
+  # Leaderboard
+  get "leaderboard", to: "notes#leaderboard"
 
   # Static Pages
   get "about", to: "pages#about"
