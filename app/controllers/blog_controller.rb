@@ -1,11 +1,10 @@
 # app/controllers/blog_controller.rb
 class BlogController < ApplicationController
   include BlogHelper
+  include DateHelper
 
   def index
-    markdown_files = available_posts
-
-    @posts = markdown_files.map do |file|
+    @posts = sort_by_newest.map do |file|
       build_post_data(file, for_index: true)
     end
   end
@@ -29,5 +28,13 @@ class BlogController < ApplicationController
 
   def available_posts
     Dir.glob(Rails.root.join("app", "views", "posts", "*.md"))
+  end
+
+  def sort_by_newest
+    available_posts.sort_by do |file|
+      front_matter = FrontMatterParser::Parser.parse_file(file)
+
+      front_matter.front_matter["date"]
+    end.reverse
   end
 end
