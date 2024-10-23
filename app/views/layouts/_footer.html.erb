@@ -1,15 +1,34 @@
 <footer class="bg-black text-white p-5">
   <div class="max-w-6xl mx-auto w-full">
-    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-      <p class="text-center md:text-left text-xl font-bold">&copy; 2024 <%= APP_NAME %>. All rights reserved.</p>
-      <div class="flex space-x-4 items-center justify-center md:justify-end">
-        <a href="<%= blog_path %>" class="text-white hover:underline font-bold text-xl">Blog</a>
-        <a href="<%= pricing_path %>" class="text-white hover:underline font-bold text-xl">Pricing</a>
-        <a href="<%= GITHUB_LINK %>" target="_blank" class="text-white hover:underline font-bold text-xl flex items-center space-x-2">
-          Open
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+      <div class="flex flex-col items-start gap-2">
+        <a href="#" class="flex items-center gap-2">
+          <%= image_tag "brand/logo_white.png", alt: "DuelTasks", class: "h-6 w-6" %>
+          <span class="text-lg font-semibold"><%= APP_NAME %></span>
         </a>
-        <a href="<%= X_LINK %>" target="_blank" class="text-white hover:underline font-bold text-xl">X</a>
+        <p class="text-sm text-muted-foreground">
+          <%= APP_DESCRIPTION %>
+        </p>
       </div>
+
+      <div class="grid gap-2">
+        <h4 class="text-sm font-semibold">Quick Links</h4>
+        <a href="<%= root_path %>" class="text-sm hover:underline">Home</a>
+        <a href="<%= WAITLIST_LINK %>" class="text-sm hover:underline">Waitlist</a>
+        <a href="<%= pricing_path %>" class="text-sm hover:underline">Pricing</a>
+      </div>
+
+      <div class="grid gap-2">
+        <h4 class="text-sm font-semibold">Resources</h4>
+        <a href="<%= blog_path %>" class="text-sm hover:underline">Blog</a>
+        <a href="<%= leaderboard_path %>" class="text-sm hover:underline">Leaderboard</a>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-col items-center justify-between gap-4 text-xs text-muted-foreground sm:flex-row">
+      <p>&copy; 2024 <%= APP_NAME %>. All rights reserved.</p>
+      <nav class="flex gap-4">
+      </nav>
     </div>
   </div>
 </footer>
