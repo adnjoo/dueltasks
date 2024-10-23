@@ -6,6 +6,7 @@ X_LINK = "https://x.com/dueltasks"
 X_AT = "@dueltasks"
 DOMAIN = "https://dueltasks.com"
 DEFAULT_FROM_EMAIL = "hello@dueltasks.com"
+DEFAULT_TO_EMAIL = "support@dueltasks.com"
 SCREENSHOT_LINK = "https://dueltasks.com/20241022193042.png"
 TWITTER_CARD = "https://dueltasks.com/20241022193042_x.png"
 
