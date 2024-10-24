@@ -1,5 +1,5 @@
 <!-- app/views/notes/_new_note.html.erb -->
-<div class="my-container">
+<div class="my-container border-4 border border-black rounded-xl shadow-xl !p-4">
   <h1 class="text-4xl font-bold uppercase tracking-wide text-black mb-6 border-b-4 border-black">
     New Note
   </h1>
@@ -12,8 +12,13 @@
       <%= form.label :content, class: "text-lg font-semibold text-black uppercase tracking-wide" %>
       <%= form.text_area :content, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700 h-48" %>
     </div>
+    <div class="flex flex-col max-w-xs">
+      <%= form.label :deadline, class: "text-lg font-bold text-black uppercase mb-1" %>
+      <%= form.text_field :deadline, id: "datepicker-#{note.id}", class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none" %>
+    </div>
     <div>
       <%= form.submit 'Create Note', class: "bg-black text-white px-6 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all cursor-pointer" %>
+      <button type="button" data-action="click->toggle#toggle" class="text-red-700 underline hover:text-gray-700 uppercase">Cancel</button>
     </div>
   <% end %>
 </div>
