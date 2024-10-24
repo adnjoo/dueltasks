@@ -4,13 +4,15 @@ class Note < ApplicationRecord
   belongs_to :user
 
   # After saving the note, schedule the penalty check if the deadline is changed
-  after_save :schedule_penalty_check, if: :deadline_changed?
-
+  after_save :schedule_penalty_check
 
   validates :title, presence: true
 
   def schedule_penalty_check
-    # Schedule PenaltyWorker to run 1 minute after the deadline
-    PenaltyWorker.perform_at(self.deadline + 1.minute, self.id)
+    if self.saved_change_to_attribute?(:deadline)
+      puts("Scheduling penalty check for note #{self.id}")
+      # Schedule PenaltyJob to run 1 minute after the deadline
+      PenaltyJob.perform_at(self.deadline + 1.minute, self.id)
+    end
   end
 end
