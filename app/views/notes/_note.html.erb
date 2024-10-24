@@ -1,7 +1,7 @@
 <!-- app/views/notes/_note.html.erb -->
 <li class="border-2 rounded-md shadow-xl border-black p-2 bg-white shadow-none" data-controller="toggle">
   <!-- Display note content -->
-  <div data-toggle-target="content" class="<%= 'hidden' if @editing %>">
+  <div data-toggle-target="toggle">
     <strong class="text-2xl font-bold uppercase text-black <%= 'line-through' if note.completed %>">
       <%= note.title %>
     </strong>
@@ -28,9 +28,9 @@
   </div>
 
   <!-- Edit Form (hidden by default) -->
-  <div data-toggle-target="edit" class="hidden">
+  <div data-toggle-target="toggle" class="hidden">
     <%= form_with model: note, local: true, class: "space-y-4" do |f| %>
-     <% puts "Note Deadline: #{note.deadline}" %>
+     <%# puts "Note Deadline: #{note.deadline}" %>
       <!-- Title Input -->
       <div class="flex flex-col">
         <%= f.label :title, class: "text-lg font-bold text-black uppercase mb-1" %>

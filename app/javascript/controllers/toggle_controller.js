@@ -2,10 +2,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["content", "edit"]
+  static targets = ["toggle"]
 
   toggle() {
-    this.contentTarget.classList.toggle("hidden")
-    this.editTarget.classList.toggle("hidden")
+    this.toggleTargets.forEach((target) => {
+      target.classList.toggle("hidden")
+    })
   }
 }
