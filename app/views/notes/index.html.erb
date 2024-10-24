@@ -11,3 +11,14 @@
     <%= render @active_notes %>
   </ul>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $("[id^=datepicker-]").each(function() {
+      $(this).datepicker({
+        dateFormat: 'yy-mm-dd',
+        minDate: 1
+      });
+    });
+  });
+</script>
