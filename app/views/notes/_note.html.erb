@@ -1,51 +1,57 @@
 <!-- app/views/notes/_note.html.erb -->
-<li class="border-b-2 border-black pb-4" data-controller="toggle">
+<li class="border-2 rounded-md shadow-xl border-black p-2 bg-white shadow-none" data-controller="toggle">
   <!-- Display note content -->
   <div data-toggle-target="content" class="<%= 'hidden' if @editing %>">
-    <strong class="text-xl font-semibold uppercase text-black <%= 'line-through' if note.completed %>">
+    <strong class="text-2xl font-bold uppercase text-black <%= 'line-through' if note.completed %>">
       <%= note.title %>
     </strong>
-    <p class="text-base text-gray-700 mt-2">
-      <%= note.content %>
+    <p class="text-lg text-black mt-2">
+      <%= format_with_newlines(note.content) %>
     </p>
+    
+    <!-- Display Deadline -->
+    <% if note.deadline.present? %>
+      <p class="text-sm text-black mt-1">
+        Deadline: <%= note.deadline.strftime("%B %d, %Y") %>
+      </p>
+    <% end %>
 
-    <div class="mt-4">
+    <div class="mt-4 flex space-x-6">
       <%= form_with url: toggle_completion_note_path(note), method: :patch, local: true do |f| %>
-        <%= f.check_box :completed, checked: note.completed, onchange: 'this.form.submit();' %>
-        <label class="ml-2">Completed</label>
+        <%= f.check_box :completed, checked: note.completed, class: "mr-2", onchange: 'this.form.submit();' %>
+        <label class="text-black">Completed</label>
       <% end %>
 
-      <!-- Edit and Delete Links -->
-      <button type="button" data-action="click->toggle#toggle" class="text-black underline hover:text-gray-800">Edit</button>
-      <%= link_to 'Delete', archive_note_path(note), class: 'text-red-600 underline hover:text-red-800', data: { turbo_method: :patch, turbo_confirm: 'Are you sure?' } %>
+      <button type="button" data-action="click->toggle#toggle" class="text-black underline hover:text-gray-700 uppercase">Edit</button>
+      <%= link_to 'Delete', archive_note_path(note), class: 'text-red-700 underline hover:text-red-900 uppercase', data: { turbo_method: :patch, turbo_confirm: 'Are you sure?' } %>
     </div>
   </div>
 
   <!-- Edit Form (hidden by default) -->
   <div data-toggle-target="edit" class="hidden">
-    <%= form_with model: note, local: true, class: "space-y-6" do |f| %>
+    <%= form_with model: note, local: true, class: "space-y-4" do |f| %>
       <!-- Title Input -->
       <div class="flex flex-col">
-        <%= f.label :title, class: "text-lg font-semibold text-black uppercase tracking-wide mb-2" %>
-        <%= f.text_field :title, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700 transition duration-200 ease-in-out shadow-sm" %>
+        <%= f.label :title, class: "text-lg font-bold text-black uppercase mb-1" %>
+        <%= f.text_field :title, class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none" %>
       </div>
 
       <!-- Content Text Area -->
       <div class="flex flex-col">
-        <%= f.label :content, class: "text-lg font-semibold text-black uppercase tracking-wide mb-2" %>
-        <%= f.text_area :content, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700 transition duration-200 ease-in-out h-48 shadow-sm" %>
+        <%= f.label :content, class: "text-lg font-bold text-black uppercase mb-1" %>
+        <%= f.text_area :content, class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none h-40" %>
       </div>
 
       <!-- Deadline Input -->
       <div class="flex flex-col max-w-xs">
-        <%= f.label :deadline, class: "text-lg font-semibold text-black uppercase tracking-wide mb-2" %>
-        <%= f.text_field :deadline, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700 transition duration-200 ease-in-out" %>
+        <%= f.label :deadline, class: "text-lg font-bold text-black uppercase mb-1" %>
+        <%= f.text_field :deadline, class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none" %>
       </div>
 
       <!-- Submit and Cancel Buttons -->
-      <div class="flex space-x-4">
-        <%= f.submit 'Update Note', class: "bg-black text-white px-6 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all cursor-pointer" %>
-        <button type="button" data-action="click->toggle#toggle" class="text-black underline hover:text-gray-800">Cancel</button>
+      <div class="flex space-x-6">
+        <%= f.submit 'Update', class: "bg-black text-white px-5 py-2 uppercase font-bold tracking-wide cursor-pointer" %>
+        <button type="button" data-action="click->toggle#toggle" class="text-black underline hover:text-gray-700 uppercase">Cancel</button>
       </div>
     <% end %>
   </div>
