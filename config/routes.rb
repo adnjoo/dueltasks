@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   # Notes (Task Management)
-  resources :notes, except: [ :show ] do
+  resources :notes, except: [ :show, :edit ] do
     member do
       patch :archive, :toggle_completion
     end
