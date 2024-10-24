@@ -16,3 +16,7 @@ You can visualize this with the following graph:
 <img src="/blog/loss_aversion.png" class="max-w-sm">
 
 The curve shows that losses feel more painful than the equivalent amount of gains feel pleasurable.
+
+## Get Started
+
+<a href="https://forms.gle/6sFw9P3nqfKd575F7" target="_blank">Sign up for the DuelTasks waitlist</a> and we'll let you know soon when it's available! 🍕

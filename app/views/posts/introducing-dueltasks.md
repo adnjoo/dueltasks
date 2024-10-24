@@ -23,11 +23,11 @@ Set a deadline, choose a challenger, and stay accountable with real stakes.
 
 DuelTasks' penalty system adds **accountability** to keep you on track. 
 
-By using the [science of loss aversion](/blog/loss-aversion), we can get tasks done faster.
+By using the <a href="/blog/loss-aversion" target="_blank">science of loss aversion</a>, we can get tasks done faster.
 
 ## Get Started
 
-[Sign up for the DuelTasks waitlist](https://forms.gle/6sFw9P3nqfKd575F7) and we'll let you know soon when it's available.
+<a href="https://forms.gle/6sFw9P3nqfKd575F7" target="_blank">Sign up for the DuelTasks waitlist</a> and we'll let you know soon when it's available! 🍕
 
 ---
 
