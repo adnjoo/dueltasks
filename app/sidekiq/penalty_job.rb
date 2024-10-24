@@ -9,8 +9,9 @@ class PenaltyJob
 
     # Check if the note is incomplete and the deadline has passed
     if !note.completed && note.deadline < Time.current
+      Rails.logger.info "PenaltyJob: Charging user #{user.id} for not completing the task #{note.id}"
       # Charge the user for not completing the task
-      charge_user(user, note)
+      # charge_user(user, note)
     end
   end
 
