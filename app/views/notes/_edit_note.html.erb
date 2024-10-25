@@ -1,0 +1,31 @@
+<%= form_with model: note, local: true, class: "space-y-4" do |f| %>
+  <!-- Title Input -->
+  <div class="flex flex-col">
+    <%= f.label :title, class: "text-lg font-bold text-black uppercase mb-1" %>
+    <%= f.text_field :title, class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none" %>
+  </div>
+
+  <!-- Content Text Area -->
+  <div class="flex flex-col">
+    <%= f.label :content, class: "text-lg font-bold text-black uppercase mb-1" %>
+    <%= f.text_area :content, class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none h-40" %>
+  </div>
+
+  <!-- Deadline Input -->
+  <div class="flex flex-col max-w-xs">
+    <%= f.label :deadline, class: "text-lg font-bold text-black uppercase mb-1" %>
+    <%= f.text_field :deadline, id: "datepicker-#{note.id}", class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none" %>
+  </div>
+
+  <!-- Penalty Toggle Checkbox -->
+  <div class="flex flex-col">
+    <%= f.label :penalty_enabled, "Enable Penalty", class: "text-lg font-bold text-black uppercase mb-1" %>
+    <%= f.check_box :penalty_enabled, class: "mr-2" %>
+  </div>
+
+  <!-- Submit and Cancel Buttons -->
+  <div class="flex space-x-6">
+    <%= f.submit 'Update', class: "bg-black text-white px-5 py-2 uppercase font-bold tracking-wide cursor-pointer" %>
+    <button type="button" data-action="click->toggle#toggle" class="text-black underline hover:text-gray-700 uppercase">Cancel</button>
+  </div>
+<% end %>

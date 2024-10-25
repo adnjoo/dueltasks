@@ -35,12 +35,6 @@ class NotesController < ApplicationController
     end
   end
 
-  def toggle_completion
-    @note = Note.find(params[:id])
-    @note.update(completed: !@note.completed)
-    redirect_to notes_path, notice: "Note status updated."
-  end
-
   def archive
     note = Note.find(params[:id])
     note.update(archived: true)
@@ -63,6 +57,6 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:title, :content, :deadline)
+    params.require(:note).permit(:title, :content, :deadline, :completed, :penalty_enabled)
   end
 end

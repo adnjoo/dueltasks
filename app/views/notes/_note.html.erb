@@ -3,6 +3,9 @@
   <!-- Display note content -->
   <div data-toggle-target="toggle">
     <strong class="text-2xl font-bold uppercase text-black <%= 'line-through' if note.completed %>">
+    <% if note.penalty_enabled %>
+      <span class="text-red-500 text-lg">!</span>
+    <% end %>
       <%= note.title %>
     </strong>
     <p class="text-lg text-black mt-2">
@@ -16,43 +19,24 @@
       </p>
     <% end %>
 
-    <div class="mt-4 flex space-x-6">
-      <%= form_with url: toggle_completion_note_path(note), method: :patch, local: true do |f| %>
-        <%= f.check_box :completed, checked: note.completed, class: "mr-2", onchange: 'this.form.submit();' %>
-        <label class="text-black">Completed</label>
+    <div class="mt-4 flex items-center space-x-4">
+      <%= form_with model: note, local: true do |f| %>
+        <div class="flex items-center space-x-2">
+          <!-- Submit the form when checkbox changes -->
+          <%= f.check_box :completed, checked: note.completed, class: "mr-2 w-5 h-5", onchange: 'this.form.submit();' %>
+          <label class="text-lg text-black">Completed</label>
+        </div>
       <% end %>
+    </div>
 
-      <button type="button" data-action="click->toggle#toggle" class="text-black underline hover:text-gray-700 uppercase">Edit</button>
-      <%= link_to 'Delete', archive_note_path(note), class: 'text-red-700 underline hover:text-red-900 uppercase', data: { turbo_method: :patch, turbo_confirm: 'Are you sure?' } %>
+    <div class="mt-4 flex space-x-6">
+      <button type="button" data-action="click->toggle#toggle" class="text-blue-500 underline hover:text-blue-700 uppercase">Edit</button>
+      <%= link_to 'Delete', archive_note_path(note), class: 'text-red-500 underline hover:text-red-700 uppercase', data: { turbo_method: :patch, turbo_confirm: 'Are you sure?' } %>
     </div>
   </div>
 
   <!-- Edit Form (hidden by default) -->
-  <div data-toggle-target="toggle" class="hidden">
-    <%= form_with model: note, local: true, class: "space-y-4" do |f| %>
-      <!-- Title Input -->
-      <div class="flex flex-col">
-        <%= f.label :title, class: "text-lg font-bold text-black uppercase mb-1" %>
-        <%= f.text_field :title, class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none" %>
-      </div>
-
-      <!-- Content Text Area -->
-      <div class="flex flex-col">
-        <%= f.label :content, class: "text-lg font-bold text-black uppercase mb-1" %>
-        <%= f.text_area :content, class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none h-40" %>
-      </div>
-
-      <!-- Deadline Input -->
-      <div class="flex flex-col max-w-xs">
-        <%= f.label :deadline, class: "text-lg font-bold text-black uppercase mb-1" %>
-        <%= f.text_field :deadline, id: "datepicker-#{note.id}", class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none" %>
-      </div>
-
-      <!-- Submit and Cancel Buttons -->
-      <div class="flex space-x-6">
-        <%= f.submit 'Update', class: "bg-black text-white px-5 py-2 uppercase font-bold tracking-wide cursor-pointer" %>
-        <button type="button" data-action="click->toggle#toggle" class="text-black underline hover:text-gray-700 uppercase">Cancel</button>
-      </div>
-    <% end %>
+  <div data-toggle-target="toggle" class="hidden mt-4">
+    <%= render 'edit_note', note: note %>
   </div>
 </li>
