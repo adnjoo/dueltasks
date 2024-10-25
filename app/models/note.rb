@@ -9,7 +9,7 @@ class Note < ApplicationRecord
   validates :title, presence: true
 
   def schedule_penalty_check
-    if self.saved_change_to_attribute?(:deadline)
+    if penalty_enabled && saved_change_to_attribute?(:deadline)
       puts("Scheduling penalty check for note #{self.id}")
       # Schedule PenaltyJob to run 1 minute after the deadline
       PenaltyJob.perform_at(self.deadline + 1.minute, self.id)
