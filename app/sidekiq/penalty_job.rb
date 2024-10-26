@@ -3,7 +3,7 @@ class PenaltyJob
   include Sidekiq::Job
 
   # Ensure job uniqueness until the job starts executing
-  sidekiq_options unique: :until_executing, unique_args: ->(args) { [ args.first ] }
+  sidekiq_options lock: :until_executed
 
 
   def perform(note_id)
