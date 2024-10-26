@@ -69,3 +69,5 @@ gem "redcarpet", "~> 3.6"
 gem "front_matter_parser", "~> 1.0"
 
 gem "sidekiq", "~> 7.3"
+
+gem "sidekiq-unique-jobs", "~> 8.0"
