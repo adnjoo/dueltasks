@@ -1,9 +1,8 @@
 # config/initializers/stripe.rb
 
-# Stripe.api_key = ENV["API_KEY"]
+# Set the Stripe API key, preferring the environment variable if available.
+# TODO: Investigate why the key might not be loading correctly in Railway.
+Stripe.api_key = ENV["STRIPE_SECRET_KEY"] || Rails.application.credentials.dig(:stripe, :secret_key)
 
-# TODO: investigate why not working in railway
-Stripe.api_key = Rails.application.credentials.dig(:stripe, :secret_key)
-
-# Debugging output to check if the key is being set
-puts "Stripe API key: #{Stripe.api_key}"
+# Debugging output to verify if the API key is being set correctly.
+# puts "Stripe API key: #{Stripe.api_key}"
