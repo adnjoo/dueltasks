@@ -2,15 +2,18 @@
 class PenaltyJob
   include Sidekiq::Job
 
+  # Ensure job uniqueness until the job starts executing
+  sidekiq_options unique: :until_executing, unique_args: ->(args) { [ args.first ] }
+
+
   def perform(note_id)
-    # Find the note
     note = Note.find(note_id)
     user = note.user
 
     # Check if the note is incomplete and the deadline has passed
     if !note.completed && note.deadline < Time.current
       Rails.logger.info "PenaltyJob: Charging user #{user.id} for not completing the task #{note.id}"
-      # Charge the user for not completing the task
+
       charge_user(user, note)
     end
   end
