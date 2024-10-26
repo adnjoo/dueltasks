@@ -5,7 +5,6 @@ class PenaltyJob
   # Ensure job uniqueness until the job starts executing
   sidekiq_options lock: :until_executed
 
-
   def perform(note_id)
     note = Note.find(note_id)
     user = note.user
