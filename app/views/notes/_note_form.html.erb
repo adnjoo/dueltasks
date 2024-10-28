@@ -1,9 +1,9 @@
-<!-- app/views/notes/_new_note.html.erb -->
+<!-- app/views/notes/_note_form.html.erb -->
 <div class="my-container border-4 border border-black rounded-xl shadow-xl !p-4">
   <h1 class="text-4xl font-bold uppercase tracking-wide text-black mb-6 border-b-4 border-black">
-    New Note
+    <%= note.persisted? ? "Edit Note" : "New Note" %>
   </h1>
-  <%= form_with model: note, local: true, url: notes_path, method: :post, class: "space-y-6" do |form| %>
+  <%= form_with model: note, local: true, class: "space-y-6" do |form| %>
     <div class="flex flex-col">
       <%= form.label :title, class: "text-lg font-semibold text-black uppercase tracking-wide" %>
       <%= form.text_field :title, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700" %>
@@ -16,8 +16,12 @@
       <%= form.label :deadline, class: "text-lg font-bold text-black uppercase mb-1" %>
       <%= form.text_field :deadline, id: "datepicker-#{note.id}", class: "border-4 border-black px-3 py-2 bg-white text-black focus:outline-none shadow-none" %>
     </div>
+    <div class="flex flex-col">
+      <%= form.label :penalty_enabled, "Enable Penalty", class: "text-lg font-bold text-black uppercase mb-1" %>
+      <%= form.check_box :penalty_enabled, class: "mr-2" %>
+    </div>
     <div>
-      <%= form.submit 'Create Note', class: "bg-black text-white px-6 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all cursor-pointer" %>
+      <%= form.submit note.persisted? ? 'Update Note' : 'Create Note', class: "bg-black text-white px-6 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all cursor-pointer" %>
       <button type="button" data-action="click->toggle#toggle" class="text-red-700 underline hover:text-gray-700 uppercase">Cancel</button>
     </div>
   <% end %>
