@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_25_140406) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_29_015026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_25_140406) do
     t.datetime "updated_at", null: false
     t.datetime "deadline"
     t.boolean "penalty_enabled"
+    t.string "penalty_job_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
