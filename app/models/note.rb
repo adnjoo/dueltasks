@@ -10,9 +10,26 @@ class Note < ApplicationRecord
 
   def schedule_penalty_check
     if penalty_enabled && saved_change_to_attribute?(:deadline)
-      puts("Scheduling penalty check for note #{self.id}")
-      # Schedule PenaltyJob to run 1 minute after the deadline
-      PenaltyJob.perform_at(self.deadline + 1.minute, self.id)
+      # Cancel any existing job
+      if penalty_job_id.present?
+        Sidekiq::ScheduledSet.new.find_job(penalty_job_id)&.delete
+      end
+
+      # Schedule a new job and save its ID
+      job_id = PenaltyJob.perform_at(self.deadline + 1.minute, self.id)
+      update_column(:penalty_job_id, job_id)
+
+      puts("Scheduled penalty check for note #{self.id}")
+    end
+  end
+
+  before_destroy :cancel_penalty_job
+
+  private
+
+  def cancel_penalty_job
+    if penalty_job_id.present?
+      Sidekiq::ScheduledSet.new.find_job(penalty_job_id)&.delete
     end
   end
 end
