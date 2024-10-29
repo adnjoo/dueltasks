@@ -8,6 +8,7 @@ class NotesController < ApplicationController
     @points = current_user.notes.where(archived: true, completed: true)
 
     @note = Note.new
+    @user = current_user
   end
 
   def new

@@ -12,7 +12,10 @@
       <% @leaderboard.each_with_index do |user, index| %>
         <tr class="<%= cycle('bg-gray-200', 'bg-gray-50') %>">
           <td class="p-2 border border-black"><%= index + 1 %></td>
-          <td class="p-2 border border-black"><%= user.username %></td>
+          <td class="p-2 border border-black flex items-center space-x-2">
+            <%= render 'shared/profile_picture', user: user %>
+            <span><%= user.username %></span>
+          </td>
           <td class="p-2 border border-black"><%= user.score %></td>
         </tr>
       <% end %>
