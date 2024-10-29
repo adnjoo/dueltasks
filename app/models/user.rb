@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   after_create :send_welcome_email
+  has_one_attached :profile_image
 
   has_many :notes, dependent: :destroy
   # Include default devise modules. Others available are:
@@ -23,6 +24,10 @@ class User < ApplicationRecord
         .where("notes.archived = true AND notes.completed = true")
         .where(public: true)
         .limit(limit)
+  end
+
+  def profile_picture
+    profile_image.attached? ? profile_image : ActionController::Base.helpers.asset_path("default-avatar.png")
   end
 
   private
