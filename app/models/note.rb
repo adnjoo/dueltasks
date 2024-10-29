@@ -8,7 +8,7 @@ class Note < ApplicationRecord
   validates :title, presence: true
 
   def schedule_penalty_check
-    if archived
+    if archived || !penalty_enabled
       cancel_penalty_job # Cancel the job if the note is archived
     elsif penalty_enabled && saved_change_to_attribute?(:deadline)
       # Cancel any existing job
