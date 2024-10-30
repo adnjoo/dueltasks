@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   after_create :send_welcome_email
-  has_one_attached :profile_image
+  has_one_attached :profile_picture
 
   has_many :notes, dependent: :destroy
   # Include default devise modules. Others available are:
