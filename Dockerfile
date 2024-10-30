@@ -22,6 +22,8 @@ ENV RAILS_ENV="production" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development" \
     AWS_REGION="us-west-1"
+    AWS_ACCESS_KEY_ID="dummy_access_key" \
+    AWS_SECRET_ACCESS_KEY="dummy_secret_key"
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
