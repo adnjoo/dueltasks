@@ -1,2 +1,6 @@
 <!-- app/views/shared/_profile_picture.html.erb -->
-<%= image_tag user.profile_picture, alt: user.username, class: "profile-icon h-8 w-8 flex" %>
+<% if user.persisted? && user.profile_picture.attached? %>
+  <%= image_tag user.profile_picture, alt: user.username, class: "h-10 w-10 rounded-full flex" %>
+<% else %>
+  <%= image_tag "default-avatar.png", alt: user.username, class: "h-10 w-10 rounded-full flex" %>
+<% end %>

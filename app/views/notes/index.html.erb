@@ -3,9 +3,11 @@
     Your Notes
   </h1>
 
-  <%= render 'shared/profile_picture', user: @user %>
+  <%= link_to edit_user_registration_path, class: 'text-black hover:underline flex flex-row gap-2 items-center' do %>
+    <%= render 'shared/profile_picture', user: @user %>
+    <span>Settings</span>
+  <% end %>
 
-  <%= link_to 'Settings', edit_user_registration_path, class: 'text-black hover:underline mt-2 flex' %>
   <h3 class="my-8 text-xl font-bold uppercase tracking-wide text-black">
     ⭐️: <%= @points.count %>
   </h3>
