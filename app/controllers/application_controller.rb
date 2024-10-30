@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:account_update, keys: [ :username, :public, :profile_picture ])
+    devise_parameter_sanitizer.permit(:account_update, keys: [ :username, :public, :profile_picture, :remove_profile_picture ])
   end
 
   private

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   require "sidekiq/web"
 
   # Devise Authentication
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
   devise_scope :user do
     authenticated :user do
       root to: "notes#index", as: :authenticated_root

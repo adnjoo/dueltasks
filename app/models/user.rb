@@ -2,6 +2,8 @@ class User < ApplicationRecord
   after_create :send_welcome_email
   has_one_attached :profile_picture
 
+  attr_accessor :remove_profile_picture
+
   has_many :notes, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
