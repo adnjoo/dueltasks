@@ -20,7 +20,8 @@ RUN apt-get update -qq && \
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+    BUNDLE_WITHOUT="development" \
+    AWS_REGION="us-west-1" \
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
@@ -43,11 +44,7 @@ COPY . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN AWS_ACCESS_KEY_ID=DUMMY \
-    AWS_SECRET_ACCESS_KEY=DUMMY \
-    AWS_REGION=us-west-1 \
-    SECRET_KEY_BASE_DUMMY=1 \
-    ./bin/rails assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base
