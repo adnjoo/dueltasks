@@ -8,6 +8,14 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-6" }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
+    <!-- Profile Picture and Upload Field -->
+    <div class="flex flex-col">
+      <%= render 'shared/profile_picture', user: @user %>
+      <%= f.label :profile_picture, class: "text-lg font-semibold uppercase tracking-wide text-black" %>
+      <%= f.file_field :profile_picture, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700" %>
+    </div>
+
+    <!-- Email Field (Display Only) -->
     <div class="flex flex-col">
       <%= f.label :email, class: "text-lg font-semibold uppercase tracking-wide text-black" %>
       <p class="text-black">
@@ -34,6 +42,7 @@
       </div>
     </div>
 
+    <!-- Password Fields -->
     <div class="flex flex-col">
       <%= f.label :password, class: "text-lg font-semibold uppercase tracking-wide text-black" %> 
       <i class="text-sm text-gray-700">(leave blank if you don't want to change it)</i>
@@ -54,6 +63,7 @@
       <%= f.password_field :current_password, autocomplete: "current-password", class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700" %>
     </div>
 
+    <!-- Submit Button -->
     <div>
       <%= f.submit "Update", class: "bg-black text-white px-6 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all cursor-pointer" %>
     </div>

@@ -11,11 +11,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:account_update, keys: [ :username, :public ])
+    devise_parameter_sanitizer.permit(:account_update, keys: [ :username, :public, :profile_picture ])
   end
 
   private
-    def set_stripe_key
-      Stripe.api_key = Rails.application.credentials.dig(:stripe, :secret_key)
-    end
+
+  def set_stripe_key
+    Stripe.api_key = Rails.application.credentials.dig(:stripe, :secret_key)
+  end
 end

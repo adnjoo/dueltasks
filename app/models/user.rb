@@ -26,8 +26,8 @@ class User < ApplicationRecord
         .limit(limit)
   end
 
-  def profile_picture
-    profile_image.attached? ? profile_image : ActionController::Base.helpers.asset_path("default-avatar.png")
+  def display_profile_picture
+    profile_picture.attached? ? profile_picture : ActionController::Base.helpers.asset_path("default-avatar.png")
   end
 
   private
