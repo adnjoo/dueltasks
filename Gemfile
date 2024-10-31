@@ -73,3 +73,5 @@ gem "sidekiq", "~> 7.3"
 gem "sidekiq-unique-jobs", "~> 8.0"
 
 gem "aws-sdk-s3", "~> 1.169"
+
+gem "inline_svg", "~> 1.10"

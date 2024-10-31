@@ -22,7 +22,18 @@
         <h4 class="text-sm font-semibold">Resources</h4>
         <a href="<%= blog_path %>" class="text-sm hover:underline">Blog</a>
         <a href="<%= leaderboard_path %>" class="text-sm hover:underline">Leaderboard</a>
-        <a href="<%= GITHUB_LINK %>" class="text-sm hover:underline" target="_blank">Open</a>
+        <span>&nbsp;</span>
+      </div>
+
+      <div class="grid gap-2">
+        <span>&nbsp;</span>
+        <a href="<%= TWITTER_LINK %>" class="text-sm text-gray-400 hover:text-gray-500" target="_blank">
+          <%= inline_svg_tag "icons/twitter.svg", width: "18", height: "18" %>
+        </a>
+        <a href="<%= GITHUB_LINK %>" class="text-sm text-gray-400 hover:text-gray-500" target="_blank">
+          <%= inline_svg_tag "icons/github.svg", class: "h-6 w-6" %>
+        </a>
+        <span>&nbsp;</span>
       </div>
     </div>
 
