@@ -10,7 +10,7 @@ class Note < ApplicationRecord
   def schedule_penalty_check
     if archived || !penalty_enabled
       cancel_penalty_job # Cancel the job if the note is archived
-    elsif penalty_enabled && saved_change_to_attribute?(:deadline)
+    elsif penalty_enabled
       # Cancel any existing job
       cancel_penalty_job
 
