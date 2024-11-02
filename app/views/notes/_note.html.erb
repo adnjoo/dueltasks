@@ -20,7 +20,7 @@
     <% end %>
 
     <!-- Display Collaborators -->
-    <% if note.users.any? %>
+    <% if note.users.any? { |collaborator| collaborator != current_user } %>
       <div class="mt-3 text-sm text-gray-700">
         <strong>Collaborators:</strong>
         <ul class="list-disc list-inside">
