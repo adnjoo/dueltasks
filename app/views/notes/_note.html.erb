@@ -19,6 +19,22 @@
       </p>
     <% end %>
 
+    <!-- Display Collaborators -->
+    <% if note.users.any? %>
+      <div class="mt-3 text-sm text-gray-700">
+        <strong>Collaborators:</strong>
+        <ul class="list-disc list-inside">
+          <% note.users.each do |collaborator| %>
+            <% next if collaborator == current_user %>
+            <li class="flex items-center space-x-2">
+              <%= render "shared/profile_picture", user: collaborator %>
+              <span><%= collaborator.username %></span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="mt-4 flex items-center space-x-4">
       <%= form_with model: note, local: true do |f| %>
         <div class="flex items-center space-x-2">

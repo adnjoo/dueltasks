@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!, except: [ :leaderboard ]
   before_action :set_note, only: [ :edit, :update, :destroy ]
+  before_action :set_public_users, only: [ :index, :new, :edit ]
 
   def index
     @active_notes = current_user.notes.where(archived: false)
@@ -32,8 +33,14 @@ class NotesController < ApplicationController
   end
 
   def update
-    if @note.update(note_params)
-      redirect_to notes_path, notice: "Note updated successfully."
+    @note = Note.find(params[:id])
+    # Update collaborators using the new method in the Note model
+    user_ids = (params[:note][:user_ids] || []).map(&:to_i)
+    @note.update_collaborators(user_ids)
+
+    # Update other attributes of the note
+    if @note.update(note_params.except(:user_ids))
+      redirect_to @note, notice: "Note was successfully updated."
     else
       render :edit
     end
@@ -60,7 +67,11 @@ class NotesController < ApplicationController
     @note = current_user.notes.find(params[:id])
   end
 
+  def set_public_users
+    @public_users = User.where(public: true).where.not(id: current_user.id)
+  end
+
   def note_params
-    params.require(:note).permit(:title, :content, :deadline, :completed, :penalty_enabled)
+    params.require(:note).permit(:title, :content, :deadline, :completed, :penalty_enabled, user_ids: [])
   end
 end
