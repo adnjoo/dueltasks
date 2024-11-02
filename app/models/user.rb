@@ -25,12 +25,12 @@ class User < ApplicationRecord
 
   def self.leaderboard(limit = 10)
     self.left_joins(:notes)
-      .group(:id)
-      .order("COUNT(notes.id) DESC")
-      .select("users.id, users.username, COUNT(notes.id) AS score")
-      .where("notes.archived = true AND notes.completed = true")
-      .where(public: true)
-      .limit(limit)
+        .group(:id)
+        .order("COUNT(notes.id) DESC")
+        .select("users.id, users.username, COUNT(notes.id) AS score")
+        .where("notes.archived = true AND notes.completed = true")
+        .where(public: true)
+        .limit(limit)
   end
 
   def display_profile_picture
