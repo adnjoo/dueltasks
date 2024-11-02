@@ -6,5 +6,8 @@ class CreateNotesUsers < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
+
+    # Adding a unique index to enforce uniqueness at the database level
+    add_index :notes_users, [ :note_id, :user_id ], unique: true
   end
 end
