@@ -17,11 +17,14 @@ class NotesController < ApplicationController
 
   def create
     @note = current_user.notes.build(note_params)
+    @note.owner = current_user
+
     if @note.save
+      @note.users << current_user unless @note.users.include?(current_user) # Add to collaborators
       redirect_to notes_path, notice: "Note created successfully."
     else
       flash.now[:alert] = "Note creation failed."
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
