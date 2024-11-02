@@ -11,7 +11,7 @@ class Note < ApplicationRecord
 
   # Helper methods to add and remove collaborators
   def add_collaborator(user)
-    users << user unless users.include?(user)
+    notes_users.find_or_create_by(user_id: user.id)
   end
 
   def remove_collaborator(user)
@@ -20,6 +20,21 @@ class Note < ApplicationRecord
 
   def collaborators
     users.where.not(id: owner.id)
+  end
+
+  # Method to update collaborators by adding new ones and removing those not in the provided list (excluding owner)
+  def update_collaborators(user_ids)
+    current_user_ids = users.pluck(:id)
+    new_user_ids = user_ids - current_user_ids
+    removed_user_ids = current_user_ids - user_ids - [ owner.id ]
+
+    new_users = User.where(id: new_user_ids)
+    removed_users = User.where(id: removed_user_ids)
+
+    new_users.each { |user| add_collaborator(user) }
+    removed_users.each { |user| remove_collaborator(user) }
+
+    Rails.logger.info("Added collaborators: #{new_user_ids}, Removed collaborators: #{removed_user_ids}")
   end
 
   def schedule_penalty_check

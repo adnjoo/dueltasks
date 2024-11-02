@@ -34,12 +34,13 @@ class NotesController < ApplicationController
 
   def update
     @note = Note.find(params[:id])
-    current_user_ids = @note.user_ids
+    # Update collaborators using the new method in the Note model
+    user_ids = (params[:note][:user_ids] || []).map(&:to_i)
+    @note.update_collaborators(user_ids)
 
-    updated_user_ids = (current_user_ids + (note_params[:user_ids] || [])).uniq
-
-    if @note.update(note_params.merge(user_ids: updated_user_ids))
-      redirect_to notes_path, notice: "Note updated successfully."
+    # Update other attributes of the note
+    if @note.update(note_params.except(:user_ids))
+      redirect_to @note, notice: "Note was successfully updated."
     else
       render :edit
     end
