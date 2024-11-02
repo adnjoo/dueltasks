@@ -3,9 +3,9 @@
   <!-- Display note content -->
   <div data-toggle-target="toggle">
     <strong class="text-2xl font-bold uppercase text-black <%= 'line-through' if note.completed %>">
-    <% if note.penalty_enabled %>
-      <span class="text-red-500 text-lg">!</span>
-    <% end %>
+      <% if note.penalty_enabled %>
+        <span class="text-red-500 text-lg">!</span>
+      <% end %>
       <%= note.title %>
     </strong>
     <p class="text-lg text-black mt-2">
@@ -17,6 +17,22 @@
       <p class="text-sm text-black mt-1">
         Deadline: <%= note.deadline.strftime("%B %d, %Y") %>
       </p>
+    <% end %>
+
+    <!-- Display Collaborators -->
+    <% if note.users.any? %>
+      <div class="mt-3 text-sm text-gray-700">
+        <strong>Collaborators:</strong>
+        <ul class="list-disc list-inside">
+          <% note.users.each do |collaborator| %>
+            <% next if collaborator == current_user %>
+            <li class="flex items-center space-x-2">
+              <%= render "shared/profile_picture", user: collaborator %>
+              <span><%= collaborator.username %></span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
 
     <div class="mt-4 flex items-center space-x-4">

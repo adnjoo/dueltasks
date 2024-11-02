@@ -20,6 +20,10 @@
       <%= form.label :penalty_enabled, "Enable Penalty", class: "text-lg font-bold text-black uppercase mb-1" %>
       <%= form.check_box :penalty_enabled, class: "mr-2" %>
     </div>
+    <div class="flex flex-col">
+      <%= form.label :collaborators, "Add Collaborators", class: "text-lg font-semibold text-black uppercase tracking-wide" %>
+      <%= select_tag "note[user_ids][]", options_from_collection_for_select(@public_users, :id, :username, note.user_ids), multiple: true, class: "border-2 border-black px-4 py-2 bg-white text-black focus:outline-none focus:border-gray-700" %>
+    </div>
     <div>
       <%= form.submit note.persisted? ? 'Update Note' : 'Create Note', class: "bg-black text-white px-6 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all cursor-pointer" %>
       <button type="button" data-action="click->toggle#toggle" class="text-red-700 underline hover:text-gray-700 uppercase">Cancel</button>
