@@ -1,11 +1,26 @@
 class Note < ApplicationRecord
   scope :not_archived, -> { where(archived: false) }
 
-  belongs_to :user
+  belongs_to :owner, class_name: "User", foreign_key: :user_id
+  has_many :notes_users, dependent: :destroy
+  has_many :users, through: :notes_users
 
   after_save :schedule_penalty_check
 
   validates :title, presence: true
+
+  # Helper methods to add and remove collaborators
+  def add_collaborator(user)
+    users << user unless users.include?(user)
+  end
+
+  def remove_collaborator(user)
+    users.delete(user)
+  end
+
+  def collaborators
+    users.where.not(id: owner.id)
+  end
 
   def schedule_penalty_check
     if archived || !penalty_enabled

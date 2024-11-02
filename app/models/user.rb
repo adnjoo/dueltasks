@@ -4,7 +4,12 @@ class User < ApplicationRecord
 
   attr_accessor :remove_profile_picture
 
-  has_many :notes, dependent: :destroy
+  has_many :notes_users, dependent: :destroy
+  has_many :notes, through: :notes_users
+
+  # Direct association for notes the user owns
+  has_many :owned_notes, class_name: "Note", foreign_key: :user_id, dependent: :destroy
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -20,12 +25,12 @@ class User < ApplicationRecord
 
   def self.leaderboard(limit = 10)
     self.left_joins(:notes)
-        .group(:id)
-        .order("COUNT(notes.id) DESC")
-        .select("users.id, users.username, COUNT(notes.id) AS score")
-        .where("notes.archived = true AND notes.completed = true")
-        .where(public: true)
-        .limit(limit)
+      .group(:id)
+      .order("COUNT(notes.id) DESC")
+      .select("users.id, users.username, COUNT(notes.id) AS score")
+      .where("notes.archived = true AND notes.completed = true")
+      .where(public: true)
+      .limit(limit)
   end
 
   def display_profile_picture
