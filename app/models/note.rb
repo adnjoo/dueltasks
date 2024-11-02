@@ -39,16 +39,20 @@ class Note < ApplicationRecord
 
   def schedule_penalty_check
     if archived || !penalty_enabled
-      cancel_penalty_job # Cancel the job if the note is archived
+      cancel_penalty_job # Cancel the job if the note is archived or penalty is disabled
     elsif penalty_enabled
-      # Cancel any existing job
-      cancel_penalty_job
+      if deadline.present?
+        # Cancel any existing job
+        cancel_penalty_job
 
-      # Schedule a new job and save its ID
-      job_id = PenaltyJob.perform_at(deadline + 1.minute, id)
-      update_column(:penalty_job_id, job_id)
+        # Schedule a new job and save its ID
+        job_id = PenaltyJob.perform_at(deadline + 1.minute, id)
+        update_column(:penalty_job_id, job_id)
 
-      puts("Scheduled penalty check for note #{id}")
+        puts("Scheduled penalty check for note #{id}")
+      else
+        puts("No deadline set for note #{id}, skipping penalty check scheduling.")
+      end
     end
   end
 
