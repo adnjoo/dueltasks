@@ -40,7 +40,7 @@ class NotesController < ApplicationController
 
     # Update other attributes of the note
     if @note.update(note_params.except(:user_ids))
-      redirect_to @note, notice: "Note was successfully updated."
+      redirect_to notes_path, notice: "Note was successfully updated."
     else
       render :edit
     end
