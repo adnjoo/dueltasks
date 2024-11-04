@@ -11,7 +11,8 @@ class User < ApplicationRecord
   has_many :owned_notes, class_name: "Note", foreign_key: :user_id, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   has_many :subscriptions, dependent: :destroy
 
