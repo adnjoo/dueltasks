@@ -1,13 +1,4 @@
 <div class="my-container" data-controller="toggle">
-  <h1 class="text-4xl font-bold tracking-wide text-black mb-6 border-b-4 border-black">
-    Your Notes
-  </h1>
-
-  <%= link_to edit_user_registration_path, class: 'text-black hover:underline flex flex-row gap-2 items-center' do %>
-    <%= render 'shared/profile_picture', user: @user %>
-    <span>Settings</span>
-  <% end %>
-
   <h3 class="my-8 text-xl font-bold tracking-wide text-black">
     ⭐️: <%= @points.count %>
   </h3>
