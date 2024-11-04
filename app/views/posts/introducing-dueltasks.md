@@ -27,7 +27,7 @@ By using the <a href="/blog/loss-aversion" target="_blank">science of loss avers
 
 ## Get Started
 
-<a href="https://forms.gle/6sFw9P3nqfKd575F7" target="_blank">Sign up for the DuelTasks waitlist</a> and we'll let you know soon when it's available! 🍕
+<a href="/users/sign_in" target="_blank">Sign up for DuelTasks 🍕
 
 ---
 
