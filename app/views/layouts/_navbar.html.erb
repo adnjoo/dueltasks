@@ -1,4 +1,4 @@
-<nav class="bg-gray-800 text-gray-100 p-4 shadow-md" data-controller="toggle">
+<nav class="p-4 shadow-md" data-controller="toggle">
   <div class="max-w-6xl flex justify-between w-full mx-auto items-center">
     <%= link_to root_path, class: "flex items-center" do %>
       <%= image_tag "brand/logo_black_no_bg.png", alt: "Logo", class: "h-8 w-auto" %>
@@ -20,8 +20,8 @@
     </ul>
   </div>
   <!-- Dropdown menu -->
-  <div data-toggle-target="toggle" class="hidden">
-    <%= link_to "Settings", edit_user_registration_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
-    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
+  <div data-toggle-target="toggle" class="mt-2 hidden max-w-6xl flex flex-col w-full mx-auto">
+    <%= link_to "Settings", edit_user_registration_path, class: "block px-4 py-2 text-gray-700 hover:underline" %>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-gray-700 hover:underline" %>
   </div>
 </nav>
