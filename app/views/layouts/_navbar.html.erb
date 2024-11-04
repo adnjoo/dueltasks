@@ -1,15 +1,27 @@
-<nav class="bg-black text-white p-5 text-white">
+<nav class="bg-gray-800 text-gray-100 p-4 shadow-md" data-controller="toggle">
   <div class="max-w-6xl flex justify-between w-full mx-auto items-center">
-    <%= link_to root_path, class: "flex flex-row" do %>
-      <%= image_tag "brand/logo_white_no_bg.png", alt: "Logo", class: "h-8 w-auto" %>
-      <span class="text-2xl font-extrabold ml-2 hidden lg:block"><%= APP_NAME %></span>
+    <%= link_to root_path, class: "flex items-center" do %>
+      <%= image_tag "brand/logo_black_no_bg.png", alt: "Logo", class: "h-8 w-auto" %>
+      <span class="text-lg font-semibold ml-2 hidden lg:block"><%= APP_NAME %></span>
     <% end %>
-    <ul class="flex space-x-6 text-xl">
+    <ul class="flex space-x-4 text-lg">
       <% if user_signed_in? %>
-        <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "hover:text-gray-500" %></li>
+        <li class="relative">
+          <!-- User menu button -->
+          <button id="user-menu-button" class="text-black hover:underline flex items-center gap-2" data-action="click->toggle#toggle">
+            <%= render 'shared/profile_picture', user: @user %>
+          </button>
+        </li>
       <% else %>
-        <li><%= link_to "Login", new_user_session_path, class: "hover:text-gray-500" %></li>
+        <li>
+          <%= link_to "Login", new_user_session_path, class: "hover:text-gray-400 transition-colors duration-200 ease-in-out" %>
+        </li>
       <% end %>
     </ul>
+  </div>
+  <!-- Dropdown menu -->
+  <div data-toggle-target="toggle" class="hidden">
+    <%= link_to "Settings", edit_user_registration_path, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "block px-4 py-2 text-gray-700 hover:bg-gray-100" %>
   </div>
 </nav>

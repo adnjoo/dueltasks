@@ -1,19 +1,10 @@
 <div class="my-container" data-controller="toggle">
-  <h1 class="text-4xl font-bold uppercase tracking-wide text-black mb-6 border-b-4 border-black">
-    Your Notes
-  </h1>
-
-  <%= link_to edit_user_registration_path, class: 'text-black hover:underline flex flex-row gap-2 items-center' do %>
-    <%= render 'shared/profile_picture', user: @user %>
-    <span>Settings</span>
-  <% end %>
-
-  <h3 class="my-8 text-xl font-bold uppercase tracking-wide text-black">
+  <h3 class="my-8 text-xl font-bold tracking-wide text-black">
     ⭐️: <%= @points.count %>
   </h3>
   
   <!-- New Note Button -->
-  <button data-action="click->toggle#toggle" class="bg-black text-white px-4 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all">
+  <button data-action="click->toggle#toggle" class="bg-black text-white px-4 py-2 font-bold tracking-wider rounded-xl shadow-xl transition-transform transform active:translate-y-1 hover:-translate-y-1">
     New Note
   </button>
 
