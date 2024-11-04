@@ -1,5 +1,5 @@
 <div class="my-container" data-controller="toggle">
-  <h1 class="text-4xl font-bold uppercase tracking-wide text-black mb-6 border-b-4 border-black">
+  <h1 class="text-4xl font-bold tracking-wide text-black mb-6 border-b-4 border-black">
     Your Notes
   </h1>
 
@@ -8,12 +8,12 @@
     <span>Settings</span>
   <% end %>
 
-  <h3 class="my-8 text-xl font-bold uppercase tracking-wide text-black">
+  <h3 class="my-8 text-xl font-bold tracking-wide text-black">
     ⭐️: <%= @points.count %>
   </h3>
   
   <!-- New Note Button -->
-  <button data-action="click->toggle#toggle" class="bg-black text-white px-4 py-2 uppercase font-bold tracking-wider hover:bg-gray-800 transition-all">
+  <button data-action="click->toggle#toggle" class="bg-black text-white px-4 py-2 font-bold tracking-wider rounded-xl shadow-xl hover:bg-gray-800 transition-all">
     New Note
   </button>
 
