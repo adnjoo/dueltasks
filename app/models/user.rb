@@ -1,3 +1,5 @@
+require "open-uri"
+
 class User < ApplicationRecord
   after_create :send_welcome_email
   has_one_attached :profile_picture
@@ -11,7 +13,8 @@ class User < ApplicationRecord
   has_many :owned_notes, class_name: "Note", foreign_key: :user_id, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [ :google_oauth2 ]
 
   has_many :subscriptions, dependent: :destroy
 
@@ -21,6 +24,25 @@ class User < ApplicationRecord
 
   def subscribed?
     subscriptions.where(status: "active").any?
+  end
+
+  def self.from_omniauth(auth)
+    user = where(provider: auth.provider, uid: auth.uid).first_or_initialize
+
+    if user.new_record?
+      existing_user = User.find_by(email: auth.info.email)
+      if existing_user
+        user = existing_user  # Link to the existing account
+      else
+        user.email = auth.info.email
+        user.password = Devise.friendly_token[0, 20]
+        user.username = auth.info.name
+        user.profile_picture.attach(io: URI.open(auth.info.image), filename: "google_avatar.jpg") if auth.info.image.present?
+      end
+    end
+
+    user.save
+    user
   end
 
   def self.leaderboard(limit = 10)
