@@ -75,3 +75,5 @@ gem "sidekiq-unique-jobs", "~> 8.0"
 gem "aws-sdk-s3", "~> 1.169"
 
 gem "inline_svg", "~> 1.10"
+
+gem "omniauth-google-oauth2", "~> 1.2"
