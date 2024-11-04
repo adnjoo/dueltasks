@@ -1,7 +1,7 @@
 <!-- app/views/notes/_note.html.erb -->
 <li class="border-2 rounded-md shadow-xl border-black p-2 bg-white shadow-none" data-controller="toggle">
   <!-- Display note content -->
-  <div data-toggle-target="toggle">
+  <div data-toggle-target="toggle" class="overflow-hidden">
     <strong class="text-2xl font-bold uppercase text-black <%= 'line-through' if note.completed %>">
     <% if note.penalty_enabled %>
       <span class="text-red-500 text-lg">!</span>
