@@ -7,7 +7,7 @@ DuelTasks is a simple multiplayer productivity tool built with Ruby on Rails.
 ## Requirements
 
 - Ruby 3.3.4
-- Rails 7.x
+- Rails 8.x
 - PostgreSQL
 
 ## Getting Started
