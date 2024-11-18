@@ -83,3 +83,5 @@ gem "omniauth", "~> 2.1"
 gem "dotenv-rails", "~> 3.1"
 
 gem "omniauth-rails_csrf_protection", "~> 1.0"
+
+gem "meta-tags", "~> 2.22"
