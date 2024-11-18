@@ -14,6 +14,7 @@ module ApplicationHelper
 
   def meta_tags(title: APP_TITLE, description: APP_DESCRIPTION, image: SCREENSHOT_LINK, url: DOMAIN, twitter_card: TWITTER_CARD)
     safe_join([
+      tag.meta(name: "description", content: description),
       tag.meta(name: "twitter:title", content: title),
       tag.meta(name: "twitter:description", content: description),
       tag.meta(name: "twitter:image", content: twitter_card),
